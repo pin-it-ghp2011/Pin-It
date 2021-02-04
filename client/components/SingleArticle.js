@@ -12,9 +12,9 @@ class SingleArticle extends React.Component {
     console.log(`the beginning of componentdidmount`)
     // const url = 'https://en.wikipedia.org/wiki/Groundhog_Day';
     let scrapedArticle = await axios.get(`/api/singleArticle/`)
-
-    console.log(scrapedArticle, `do i exist??`)
-    this.setState({article: scrapedArticle})
+    let article = scrapedArticle.data
+    console.log(scrapedArticle, `do i exist??`, article)
+    this.setState({article: article})
   }
 
   render() {
@@ -30,5 +30,8 @@ class SingleArticle extends React.Component {
 export default SingleArticle
 
 const Article = props => {
-  return <div dangerouslySetInnerHTML={props.article} />
+  console.log('props', props.content)
+  return props.content.body && props.content.body.length ? (
+    <div dangerouslySetInnerHTML={{__html: props.content.body}} />
+  ) : null
 }
