@@ -11,7 +11,7 @@ const cloudant = new Cloudant({
 
 const url = 'https://en.wikipedia.org/wiki/Groundhog'
 const puppeteerArticle = async () => {
-  const browser = await puppeteer.launch()
+  const browser = await puppeteer.launch({args: ['--no-sandbox']})
   const page = await browser.newPage()
   await page.goto(url, {waitUntil: 'networkidle2'})
   let title = await (await page.title()).toString()
@@ -28,6 +28,7 @@ const puppeteerArticle = async () => {
   return articleObj
 }
 
+//add article to db from puppeteer
 async function asyncCall() {
   const myOutputFromPuppeteer = await puppeteerArticle()
   //await cloudant.db.create('test');
