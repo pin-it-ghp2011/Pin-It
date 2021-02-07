@@ -9,8 +9,7 @@ const cloudant = new Cloudant({
   password: 'cd1ac3a142202b2d9c95a0e7cfe1826b'
 })
 
-const url =
-  'https://www.nytimes.com/2021/02/05/technology/computer-chips-government-help.html'
+const url = 'https://en.wikipedia.org/wiki/Groundhog'
 const puppeteerArticle = async () => {
   const browser = await puppeteer.launch()
   const page = await browser.newPage()
