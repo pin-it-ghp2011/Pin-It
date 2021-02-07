@@ -14,7 +14,7 @@ const puppeteerArticle = async () => {
   const browser = await puppeteer.launch({args: ['--no-sandbox']})
   const page = await browser.newPage()
   await page.goto(url, {waitUntil: 'networkidle2'})
-  let title = await (await page.title()).toString()
+  let title = await page.title()
   // console.log(title)
   await page.waitForSelector('body')
   const body = await page.evaluate(() => document.body.innerHTML)
@@ -29,6 +29,7 @@ const puppeteerArticle = async () => {
 }
 
 //add article to db from puppeteer
+
 async function asyncCall() {
   const myOutputFromPuppeteer = await puppeteerArticle()
   //await cloudant.db.create('test');
