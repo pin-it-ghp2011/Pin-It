@@ -1,12 +1,12 @@
 const router = require('express').Router()
 const puppeteer = require('puppeteer')
-
 const Cloudant = require('@cloudant/cloudant')
+require('dotenv').config()
+
 const cloudant = new Cloudant({
-  url:
-    'https://apikey-v2-r9ere7j079dc0699bhagedk73ffhpdctc2hu883edr:cd1ac3a142202b2d9c95a0e7cfe1826b@402e34f0-2a34-4c62-8a15-f73d22bfd449-bluemix.cloudantnosqldb.appdomain.cloud',
-  account: 'apikey-v2-r9ere7j079dc0699bhagedk73ffhpdctc2hu883edr',
-  password: 'cd1ac3a142202b2d9c95a0e7cfe1826b'
+  url: process.env.CLOUDANT_URL,
+  account: process.env.CLOUDANT_ACCOUNT,
+  password: process.env.CLOUDANT_PASSWORD
 })
 
 const url = 'https://en.wikipedia.org/wiki/Groundhog'
