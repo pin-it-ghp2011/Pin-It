@@ -4,32 +4,30 @@
 
 <head>
   <meta charset="utf-8">
-  <script type="text/javascript" defer src="/popup.js">
-  </script>
-  <script src="node_modules/pouchdb/dist/pouchdb.min.js"></script>
+  <style>
+    button {
+      color: white;
+      border-radius: 25%;
+      border-color: black;
+      padding: 3px;
+      background-color: red;
+    }
+  </style>
+</head>
 
 <body>
   <title>Pin It!</title>
-  <form id="loginform">
+  <!-- <form id="loginform">
     <span>Email</span>
     <input id="email" type="text" name="email" />
     <span>Password</span>
     <input id="password" type="password" name="password" />
     <button type="submit" id="login">Login</button>
-  </form>
-  <button id="save-article">Save this article!</button>
-  <button id='logOut' style="display:none">Logout</button>
-  <script src="popup.js"></script>
+  </form> -->
+  <button id="saveArticle">Save this article!</button>
+  <script defer src="popup.js">
+  </script>
+  <script src="node_modules/pouchdb/dist/pouchdb.min.js"></script>
 </body>
-<style>
-  button {
-    color: white;
-    border-radius: 25%;
-    border-color: black;
-    padding: 3px;
-    background-color: red;
-  }
-</style>
-</head>
 
 </html>
