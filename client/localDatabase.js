@@ -1,10 +1,9 @@
 const PouchDB = require('pouchdb')
 const find = require('pouchdb-find')
 PouchDB.plugin(find)
+require('dotenv').config()
 
-const remotedb = new PouchDB(
-  'https://apikey-v2-r9ere7j079dc0699bhagedk73ffhpdctc2hu883edr:cd1ac3a142202b2d9c95a0e7cfe1826b@402e34f0-2a34-4c62-8a15-f73d22bfd449-bluemix.cloudantnosqldb.appdomain.cloud/pinit-test-linh'
-)
+const remotedb = new PouchDB(`${process.env.CLOUDANT_URL}/pinit-test-linh`)
 console.log('Remote database created Successfully.')
 remotedb.info().then(function(info) {
   console.log('CLOUDANT DB: ', info)
