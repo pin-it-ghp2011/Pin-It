@@ -1,21 +1,25 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 
-import {Navbar} from './components'
+import {NavBar} from './components'
 import Routes from './routes'
+import {AuthProvider} from './components/auth/AuthContext'
 
 //temporary
-import SignUp from './components/SignUp'
-import Login from './components/Login'
+import SignUp from './components/auth/SignUp'
+import Login from './components/auth/LogIn'
 import SingleArticle from './components/SingleArticle'
+import firebase from '../config/firebaseConfig'
 
 const App = () => {
   return (
     <div>
-      <Navbar />
-      <Routes />
-      {/* <SignUp />
-      <Login /> */}
-      <SingleArticle />
+      <AuthProvider>
+        <NavBar />
+        <Routes />
+        {/* <SignUp />
+        <Login /> */}
+        {/* <SingleArticle /> */}
+      </AuthProvider>
     </div>
   )
 }
