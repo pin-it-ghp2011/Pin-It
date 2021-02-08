@@ -1,37 +1,46 @@
 import React from 'react'
-import axios from 'axios'
+import {connect} from 'react-redux'
+import {fetchSingleArticleThunk} from '../store/singleArticle'
 
 class SingleArticle extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      article: {}
-    }
-  }
-  async componentDidMount() {
-    console.log(`the beginning of componentdidmount`)
+  componentDidMount() {
+    console.log(`the beginning of componentdidmount single article`)
+    this.props.loadSingleArticle()
+    //below part of original axios call-save until store thunk works
     // const url = 'https://en.wikipedia.org/wiki/Groundhog_Day';
-    let scrapedArticle = await axios.get(`/api/singleArticle/`)
-    let article = scrapedArticle.data
-    console.log(scrapedArticle, `do i exist??`, article)
-    this.setState({article: article})
+    //let scrapedArticle = await axios.get(`/api/singleArticle/`)
+    //let article = scrapedArticle.data
+    //console.log(scrapedArticle, `do i exist??`, article)
+    //this.setState({article: article})
   }
 
   render() {
+    console.log('single article- props:', this.props)
     return (
       <div>
         <div>
-          {this.state.article ? <Article content={this.state.article} /> : null}
+          {/* {this.state.article ? <Article content={this.props.article} /> : null} */}
         </div>
       </div>
     )
   }
 }
-export default SingleArticle
 
 const Article = props => {
-  console.log('props', props.content)
+  //console.log('Article in SingleArticle props', props.content)
   return props.content.body && props.content.body.length ? (
     <div dangerouslySetInnerHTML={{__html: props.content.body}} />
   ) : null
 }
+
+const mapState = state => {
+  return {
+    article: state.SingleArticle
+  }
+}
+
+const mapDispatch = dispatch => ({
+  loadSingleArticle: () => dispatch(fetchSingleArticleThunk()) //linter doesnt like url in here?
+})
+
+export default connect(mapState, mapDispatch)(SingleArticle)

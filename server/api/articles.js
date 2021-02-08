@@ -9,37 +9,60 @@ const cloudant = new Cloudant({
   password: 'cd1ac3a142202b2d9c95a0e7cfe1826b'
 })
 
-const url = 'https://en.wikipedia.org/wiki/Groundhog'
-const puppeteerArticle = async () => {
-  const browser = await puppeteer.launch()
+//const url = 'https://en.wikipedia.org/wiki/Groundhog'
+const puppeteerArticle = async url => {
+  const browser = await puppeteer.launch({args: ['--no-sandbox']})
   const page = await browser.newPage()
   await page.goto(url, {waitUntil: 'networkidle2'})
-  let title = await (await page.title()).toString()
-  // console.log(title)
+  let title = await page.title()
   await page.waitForSelector('body')
   const body = await page.evaluate(() => document.body.innerHTML)
-  // console.log(body)
   await browser.close()
   const articleObj = {
     title: title,
     url: url,
-    body: `${body}`
+    body: body
   }
   return articleObj
 }
 
-async function asyncCall() {
-  const myOutputFromPuppeteer = await puppeteerArticle()
-  //await cloudant.db.create('test');
-  return cloudant.use('pinit-test-linh').insert(myOutputFromPuppeteer)
-}
+//get single article- not done- commented out for push
+router.get('/singleArticle', async (req, res, next) => {
+  try {
+    //README- need to request article for single article view
+    const singleArticle = cloudant.use('pinit-test-linh').get()
+    res.send(singleArticle)
+  } catch (error) {
+    console.log('Error in get article api', error)
+    next(error)
+  }
+})
 
-asyncCall()
-  .then(data => {
-    console.log(data)
-  })
-  .catch(err => {
-    console.log(err)
-  })
+//add article to db from puppeteer-from addArticle thunk
+router.post('/', async (req, res, next) => {
+  try {
+    const {url} = req.body
+    const myOutputFromPuppeteer = await puppeteerArticle(url)
+    cloudant.use('pinit-test-linh').insert(myOutputFromPuppeteer)
+
+    res.send(myOutputFromPuppeteer)
+  } catch (error) {
+    console.log('Error in add article axios.post', error)
+    next(error)
+  }
+})
+// async function asyncCall() {
+//   const myOutputFromPuppeteer = await puppeteerArticle()
+//   //await cloudant.db.create('test');
+//   return cloudant.use('pinit-test-linh').insert(myOutputFromPuppeteer)
+// }
+
+// asyncCall()
+//   .then((data) => {
+//     console.log(data)
+//   })
+//   .catch((err) => {
+//     console.log(err)
+//   })
 
 module.exports = router
