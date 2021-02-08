@@ -1,7 +1,9 @@
 const router = require('express').Router()
 const puppeteer = require('puppeteer')
 
-//const url = 'https://en.wikipedia.org/wiki/Groundhog'
+
+const url = 'https://en.wikipedia.org/wiki/Groundhog'
+
 const puppeteerArticle = async () => {
   const browser = await puppeteer.launch()
   const page = await browser.newPage()
@@ -27,5 +29,3 @@ router.get('/', async (req, res, next) => {
 })
 
 module.exports = router
-
-// //, { waitUntil: 'networkidle2' }
