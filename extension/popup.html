@@ -4,13 +4,25 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Pin It Extension</title>
   <script type="text/javascript" defer src="/popup.js">
   </script>
   <script src="node_modules/pouchdb/dist/pouchdb.min.js"></script>
+
+<body>
+  <title>Pin It!</title>
+  <form id="loginForm">
+    <span>Email</span>
+    <input id="email" type="text" name="email" />
+    <span>Password</span>
+    <input id="password" type="password" name="password" />
+    <button type="submit" id="login">Login</button>
+  </form>
+  <button id="save-article">Save this article!</button>
+  <button id='logOut' style="display:none">Logout</button>
+</body>
 <style>
   button {
-    color:white;
+    color: white;
     border-radius: 25%;
     border-color: black;
     padding: 3px;
@@ -18,9 +30,5 @@
   }
 </style>
 </head>
-
-<body>
-<button id="save-article">Save article</button>
-</body>
 
 </html>

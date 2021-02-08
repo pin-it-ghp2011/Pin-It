@@ -3,5 +3,8 @@
   "extends": ["fullstack", "prettier", "prettier/react"],
   "rules": {
     "semi": 0
+  },
+  "globals": {
+    "chrome": true
   }
 }
