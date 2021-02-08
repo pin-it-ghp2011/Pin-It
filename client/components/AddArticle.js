@@ -1,4 +1,6 @@
 import React from 'react'
+import {connect} from 'react-redux'
+import {addArticleThunk} from '../store/articles'
 
 class AddArticle extends React.Component {
   constructor(props) {
@@ -14,11 +16,15 @@ class AddArticle extends React.Component {
       [event.target.name]: event.target.value
     })
   }
+
   handleSubmit(event) {
     event.preventDefault()
-    const url = this.state.url
-
-    console.log('in add article component-url:', url)
+    const {url} = this.state
+    console.log('in add article handle submit, url:', url)
+    this.props.pinArticle(url)
+    this.setState({
+      url: ''
+    })
   }
 
   render() {
@@ -30,7 +36,7 @@ class AddArticle extends React.Component {
             <input
               type="text"
               name="url"
-              value={this.state.name}
+              value={this.state.url}
               onChange={this.handleChange}
               required
             />
@@ -42,4 +48,8 @@ class AddArticle extends React.Component {
   }
 }
 
-export default AddArticle
+const mapDispatch = dispatch => ({
+  pinArticle: url => dispatch(addArticleThunk(url)) //linter doesnt like url in here?
+})
+
+export default connect(null, mapDispatch)(AddArticle)
