@@ -217,8 +217,7 @@ var mapDispatch = function mapDispatch(dispatch) {
   return {
     pinArticle: function pinArticle(url) {
       return dispatch(Object(_store_articles__WEBPACK_IMPORTED_MODULE_2__["addArticleThunk"])(url));
-    } //linter doesnt like url in here?
-
+    }
   };
 };
 
@@ -237,13 +236,9 @@ var mapDispatch = function mapDispatch(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store_singleArticle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/singleArticle */ "./client/store/singleArticle.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -268,81 +263,65 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var SingleArticle = /*#__PURE__*/function (_React$Component) {
   _inherits(SingleArticle, _React$Component);
 
   var _super = _createSuper(SingleArticle);
 
-  function SingleArticle(props) {
-    var _this;
-
+  function SingleArticle() {
     _classCallCheck(this, SingleArticle);
 
-    _this = _super.call(this, props);
-    _this.state = {
-      article: {}
-    };
-    return _this;
+    return _super.apply(this, arguments);
   }
 
   _createClass(SingleArticle, [{
     key: "componentDidMount",
-    value: function () {
-      var _componentDidMount = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-        var scrapedArticle, article;
-        return regeneratorRuntime.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                console.log("the beginning of componentdidmount"); // const url = 'https://en.wikipedia.org/wiki/Groundhog_Day';
-
-                _context.next = 3;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get("/api/singleArticle/");
-
-              case 3:
-                scrapedArticle = _context.sent;
-                article = scrapedArticle.data;
-                console.log(scrapedArticle, "do i exist??", article);
-                this.setState({
-                  article: article
-                });
-
-              case 7:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function componentDidMount() {
-        return _componentDidMount.apply(this, arguments);
-      }
-
-      return componentDidMount;
-    }()
+    value: function componentDidMount() {
+      console.log("the beginning of componentdidmount single article");
+      this.props.loadSingleArticle(); //below part of original axios call-save until store thunk works
+      // const url = 'https://en.wikipedia.org/wiki/Groundhog_Day';
+      //let scrapedArticle = await axios.get(`/api/singleArticle/`)
+      //let article = scrapedArticle.data
+      //console.log(scrapedArticle, `do i exist??`, article)
+      //this.setState({article: article})
+    }
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.article ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Article, {
-        content: this.state.article
-      }) : null));
+      console.log('single article- props:', this.props);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null));
     }
   }]);
 
   return SingleArticle;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (SingleArticle);
-
 var Article = function Article(props) {
-  console.log('props', props.content);
+  //console.log('Article in SingleArticle props', props.content)
   return props.content.body && props.content.body.length ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     dangerouslySetInnerHTML: {
       __html: props.content.body
     }
   }) : null;
 };
+
+var mapState = function mapState(state) {
+  return {
+    article: state.SingleArticle
+  };
+};
+
+var mapDispatch = function mapDispatch(dispatch) {
+  return {
+    loadSingleArticle: function loadSingleArticle() {
+      return dispatch(Object(_store_singleArticle__WEBPACK_IMPORTED_MODULE_2__["fetchSingleArticleThunk"])());
+    } //linter doesnt like url in here?
+
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapState, mapDispatch)(SingleArticle));
 
 /***/ }),
 

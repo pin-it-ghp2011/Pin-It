@@ -26,11 +26,11 @@ const puppeteerArticle = async url => {
   return articleObj
 }
 
-//get single article- not done
-router.get('/', async (req, res, next) => {
+//get single article- not done- commented out for push
+router.get('/singleArticle', async (req, res, next) => {
   try {
     //README- need to request article for single article view
-    const singleArticle = cloudant.use('pinit-test-linh').get({limit: 1})
+    const singleArticle = cloudant.use('pinit-test-linh').get()
     res.send(singleArticle)
   } catch (error) {
     console.log('Error in get article api', error)
@@ -44,6 +44,7 @@ router.post('/', async (req, res, next) => {
     const {url} = req.body
     const myOutputFromPuppeteer = await puppeteerArticle(url)
     cloudant.use('pinit-test-linh').insert(myOutputFromPuppeteer)
+
     res.send(myOutputFromPuppeteer)
   } catch (error) {
     console.log('Error in add article axios.post', error)

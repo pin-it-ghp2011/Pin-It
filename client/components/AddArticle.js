@@ -49,7 +49,7 @@ class AddArticle extends React.Component {
 }
 
 const mapDispatch = dispatch => ({
-  pinArticle: url => dispatch(addArticleThunk(url)) //linter doesnt like url in here?
+  pinArticle: url => dispatch(addArticleThunk(url))
 })
 
 export default connect(null, mapDispatch)(AddArticle)
