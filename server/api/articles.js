@@ -26,7 +26,7 @@ const puppeteerArticle = async url => {
   return articleObj
 }
 
-//get single article- not done- commented out for push
+//get single article- not done-
 router.get('/singleArticle', async (req, res, next) => {
   try {
     //README- need to request article for single article view
