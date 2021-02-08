@@ -1,6 +1,5 @@
 const Cloudant = require('@cloudant/cloudant')
 const firebase = require('firebase')
-const puppeteer = require('puppeteer')
 const cloudant = new Cloudant({
   url:
     'https://apikey-v2-r9ere7j079dc0699bhagedk73ffhpdctc2hu883edr:cd1ac3a142202b2d9c95a0e7cfe1826b@402e34f0-2a34-4c62-8a15-f73d22bfd449-bluemix.cloudantnosqldb.appdomain.cloud',
@@ -33,6 +32,7 @@ async function login(email, password) {
     return 'unsuccessful'
   }
 }
+const articleUrl = {url: window.location}
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   if (request.type === 'loginForm') {
@@ -50,44 +50,22 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     const usersRef = database.collection('users').doc(currUser.email)
     const articlesRef = cloudant.use('articles').doc(url)
 
-    articlesRef.get().then(function(doc) {
-      const puppeteerArticle = async () => {
-        const browser = await puppeteer.launch({
-          args: [
-            '--no-sandbox',
-            '--disable-setuid-sandbox',
-            '--unhandled-rejections=strict'
-          ]
-        })
+    articlesRef.get().then(function(articleUrl) {
+      const puppeteerArticle = async url => {
+        const browser = await puppeteer.launch({args: ['--no-sandbox']})
         const page = await browser.newPage()
         await page.goto(url, {waitUntil: 'networkidle2'})
-        let title = await (await page.title()).toString()
-        // console.log(title)
+        let title = await page.title()
         await page.waitForSelector('body')
         const body = await page.evaluate(() => document.body.innerHTML)
-        // console.log(body)
         await browser.close()
         const articleObj = {
           title: title,
           url: url,
-          body: `${body}`
+          body: body
         }
         return articleObj
       }
-
-      async function asyncCall() {
-        const myOutputFromPuppeteer = await puppeteerArticle()
-        //await cloudant.db.create('test');
-        return cloudant.use('pinit-test-linh').insert(myOutputFromPuppeteer)
-      }
-
-      asyncCall()
-        .then(data => {
-          console.log(data)
-        })
-        .catch(err => {
-          console.log(err)
-        })
     })
   }
 })
