@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
-import firebase from '../../config/firebaseConfig'
-
+import firebase from '../../../config/firebaseConfig'
 class LogIn extends Component {
   constructor(props) {
     super(props)
@@ -25,8 +24,6 @@ class LogIn extends Component {
       //get user info
       const email = this.state.email
       const password = this.state.password
-      console.log('User email and password', email + password)
-
       //sign In the user in firebase Auth
       await firebase.auth().signInWithEmailAndPassword(email, password)
       console.log(`email and password, ${email} ${password} `)

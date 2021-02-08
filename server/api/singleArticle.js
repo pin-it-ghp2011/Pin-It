@@ -1,7 +1,6 @@
 const router = require('express').Router()
 const puppeteer = require('puppeteer')
 
-
 const url = 'https://en.wikipedia.org/wiki/Groundhog'
 
 const puppeteerArticle = async () => {

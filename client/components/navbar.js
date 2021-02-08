@@ -1,56 +1,44 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
+import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
-import {logout} from '../store'
+import {useAuth} from '../components/auth/AuthContext'
 
-const Navbar = ({handleClick, isLoggedIn}) => (
-  <div>
-    <h1>Pin It</h1>
-    <nav>
-      {isLoggedIn ? (
-        <div>
-          {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
-        </div>
-      ) : (
-        <div>
-          {/* The navbar will show these links before you log in */}
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
-        </div>
-      )}
-    </nav>
-    <hr />
-  </div>
-)
+const NavBar = () => {
+  //calling the signUp function from UseAuth
+  const {logout} = useAuth()
+  // const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-/**
- * CONTAINER
- */
-const mapState = state => {
-  return {
-    isLoggedIn: !!state.user.id
+  let {currentUser} = useAuth()
+  if (currentUser === null) {
+    currentUser = {}
   }
+
+  console.log('Current User :', currentUser)
+  // console.log('isLoggedIn:', isLoggedIn)
+
+  return (
+    <div className="navBarContainer">
+      <div>
+        <h1>Current User : {currentUser.email}</h1>
+        <Link to="/">PinIt "(Logo)"</Link>
+      </div>
+      <div>
+        {currentUser.email ? (
+          <div>
+            <a href="Log Out" onClick={logout}>
+              Logout
+            </a>
+            <Link to="/addArticle"> " Add Article " </Link>
+            <Link to="/singleArticle">" Single Article "</Link>
+          </div>
+        ) : (
+          <div>
+            <Link to="/login"> Log In </Link>
+            <Link to="/signup"> Sign Up </Link>
+          </div>
+        )}
+      </div>
+    </div>
+  )
 }
 
-const mapDispatch = dispatch => {
-  return {
-    handleClick() {
-      dispatch(logout())
-    }
-  }
-}
-
-export default connect(mapState, mapDispatch)(Navbar)
-
-/**
- * PROP TYPES
- */
-Navbar.propTypes = {
-  handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
-}
+export default NavBar
