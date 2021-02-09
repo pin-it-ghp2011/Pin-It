@@ -33,7 +33,10 @@ const puppeteerArticle = async url => {
 
 router.get('/', async (req, res, next) => {
   try {
-    const allArticles = await myLocalDB.allDocs() //pouchDb
+    const allArticles = await myLocalDB.allDocs({
+      include_docs: true,
+      attachments: true
+    })
     res.send(allArticles)
   } catch (error) {
     console.log('Error in get aa articles api', error)
@@ -48,18 +51,6 @@ router.post('/', async (req, res, next) => {
     console.log('post route-url passed', url)
     const myOutputFromPuppeteer = await puppeteerArticle(url)
     await cloudant.use('pinit-test-linh').insert(myOutputFromPuppeteer) //cloudant
-
-    // await myLocalDB
-    //   .allDocs({
-    //     include_docs: true,
-    //     attachments: true,
-    //   })
-    //   .then(function (result) {
-    //     console.log(result.rows[0]._id)
-    //   })
-    //   .catch(function (err) {
-    //     console.log(err)
-    //   })
 
     res.send(myOutputFromPuppeteer)
   } catch (error) {
@@ -109,3 +100,16 @@ module.exports = router
 //     next(error)
 //   }
 // })
+
+//do we need?
+// await myLocalDB
+//   .allDocs({
+//     include_docs: true,
+//     attachments: true,
+//   })
+//   .then(function (result) {
+//     console.log(result.rows[0]._id)
+//   })
+//   .catch(function (err) {
+//     console.log(err)
+//   })
