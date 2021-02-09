@@ -16,10 +16,10 @@ class LocalDB {
   }
 
   createDBIndex() {
-    this.db.createIndex({index: {fields: ['userKey', '_id']}})
+    this.localDB.createIndex({index: {fields: ['userKey', '_id']}})
   }
   findArticle(userId) {
-    return this.db
+    return this.localDB
       .find({selector: {userKey: {$eq: userId}}})
       .then(function(result, err) {
         if (!err) {
@@ -31,7 +31,7 @@ class LocalDB {
       })
   }
   deleteArticle(article) {
-    this.db.remove(article)
+    this.localDB.remove(article)
   }
 }
 
