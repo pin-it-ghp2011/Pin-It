@@ -28,3 +28,14 @@ router.get('/', async (req, res, next) => {
 })
 
 module.exports = router
+
+// router.post('/:url', async (req, res, next) => {
+//   try {
+//     const myOutputFromPuppeteer = await puppeteerArticle(req.params.url)
+//     cloudant.use('pinit-test-linh').insert(myOutputFromPuppeteer)
+//     //check the condition, then send 201 response, if not, then send 404
+//     res.sendStatus(201)
+//   } catch (error) {
+//     next(error)
+//   }
+// })

@@ -1,5 +1,4 @@
 import axios from 'axios'
-//import localDB from '../localDatabase'<=do in back?
 
 //action type
 const GET_ARTICLES = 'GET_ARTICLES'
@@ -17,17 +16,18 @@ export const addArticle = url => ({
   url
 })
 
-//thunks
-// export const fetchArticlesThunk = () => {
-//   return async (dispatch) => {
-//     try {
-//       const {data} = await axios.get(`/api/articles`) // this needs to be fixed-0local storage- needs userId
-//       dispatch(getArticles(data))
-//     } catch (error) {
-//       console.log('something is wrong in the fetchArticles thunk:', error)
-//     }
-//   }
-// }
+//fetch all artciles (add user key later if we get there)
+export const fetchArticlesThunk = () => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.get('/api/articles')
+      console.log('in fetch allArticles thunk, data:', data)
+      dispatch(getArticles(data))
+    } catch (error) {
+      console.log('something is wrong in the fetchArticles thunk:', error)
+    }
+  }
+}
 
 //it works!!
 export const addArticleThunk = url => {
@@ -36,7 +36,7 @@ export const addArticleThunk = url => {
       //console.log('add article thunk before axios-url', url)
       const articleUrl = {url: url}
       const {data} = await axios.post(`/api/articles`, articleUrl) // this needs to be fixed= needs matching route/local storage
-      //console.log('add article thunkafter axios:data', data)
+      console.log('add article thunkafter axios:data', data)
       dispatch(addArticle(data))
     } catch (error) {
       console.log('something is wrong in the addArticles thunk:', error)
@@ -45,7 +45,7 @@ export const addArticleThunk = url => {
 }
 
 export default function articlesReducer(state = [], action) {
-  console.log('articlesReducer:action.type', action.type.articles)
+  console.log('articlesReducer:action.type', action.type.article)
   switch (action.type) {
     case GET_ARTICLES:
       return action.articles

@@ -1,8 +1,12 @@
 const router = require('express').Router()
 const puppeteer = require('puppeteer')
+require('dotenv').config()
+const PouchDB = require('pouchdb')
+const myLocalDB = new PouchDB('articles')
+const remotedb = new PouchDB(`${process.env.CLOUDANT_URL}/'pinit-test-linh'`)
 
 const Cloudant = require('@cloudant/cloudant')
-require('dotenv').config()
+
 const cloudant = new Cloudant({
   url: process.env.CLOUDANT_URL,
   account: process.env.CLOUDANT_ACCOUNT,
@@ -21,29 +25,54 @@ const puppeteerArticle = async url => {
   const articleObj = {
     title: title,
     url: url,
-    body: body
+    body: body,
+    _id: new Date().toISOString()
   }
   return articleObj
 }
 
-//get single article- not done- commented out for push
-router.get('/singleArticle', (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
-    //README- need to request article for single article view
-    // const singleArticle = await cloudant.use('pinit-test-linh').get()
-    // res.send(singleArticle)
+    const allArticles = await myLocalDB.allDocs() //pouchDb
+    res.send(allArticles)
   } catch (error) {
-    console.log('Error in get article api', error)
+    console.log('Error in get aa articles api', error)
     next(error)
   }
 })
 
-//add article to db from puppeteer-from addArticle thunk
+//get single article- not done- complete after all articles
+//delete if added to thunk
+// router.get('/singleArticle', (req, res, next) => {
+//   try {
+//     //README- need to request article for single article view
+//     // const singleArticle = await cloudant.use('pinit-test-linh').get()
+//     // res.send(singleArticle)
+//   } catch (error) {
+//     console.log('Error in get article api', error)
+//     next(error)
+//   }
+// })
+
+//add article to cloudant from puppeteer-from addArticle thunk
 router.post('/', async (req, res, next) => {
   try {
     const {url} = req.body
+    console.log('post route-url passed', url)
     const myOutputFromPuppeteer = await puppeteerArticle(url)
-    cloudant.use('pinit-test-linh').insert(myOutputFromPuppeteer)
+    await cloudant.use('pinit-test-linh').insert(myOutputFromPuppeteer) //cloudant
+    myLocalDB.sync(remotedb)
+    myLocalDB
+      .allDocs({
+        include_docs: true,
+        attachments: true
+      })
+      .then(function(result) {
+        console.log(result.rows[0]._id)
+      })
+      .catch(function(err) {
+        console.log(err)
+      })
 
     res.send(myOutputFromPuppeteer)
   } catch (error) {
