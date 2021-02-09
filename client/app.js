@@ -7,7 +7,7 @@ import {AuthProvider} from './components/auth/AuthContext'
 //import SignUp from './components/SignUp'
 //import LogIn from './components/Login'
 import AddArticle from './components/AddArticle'
-//import SingleArticle from './components/SingleArticle'
+//mport SingleArticle from './components/SingleArticle'
 import AllArticles from './components/AllArticles'
 import firebase from '../config/firebaseConfig'
 
