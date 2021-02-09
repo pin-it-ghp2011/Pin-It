@@ -30,7 +30,7 @@ const puppeteerArticle = async url => {
   }
   return articleObj
 }
-//get all articles from local db
+
 router.get('/', async (req, res, next) => {
   try {
     const allArticles = await myLocalDB.allDocs({
@@ -39,48 +39,31 @@ router.get('/', async (req, res, next) => {
     })
     res.send(allArticles)
   } catch (error) {
-    console.log('Error in get all articles api', error)
+    console.log('Error in get aa articles api', error)
     next(error)
   }
 })
 
-//get single articles from local db
-router.get('/:id', async (req, res, next) => {
-  try {
-    const {id} = req.params
-    const singleArticle = await myLocalDB.get({
-      _id: `${id}`,
-      attachments: true
-    })
-    res.send(singleArticle)
-  } catch (error) {
-    console.log('Error in get single article api', error)
-    next(error)
-  }
-})
-//check to see if works with chrome extension
-router.post('/extension/:url', async (req, res) => {
-  console.log('xxxxxxxxxxdxxxx')
+//add article to cloudant from puppeteer-from addArticle thunk
+router.post('/', async (req, res, next) => {
   try {
     const {url} = req.params
-    console.log('extension post', url)
-    const myOutputFromPuppeteer = await puppeteerArticle(url)
-    console.log('extension outpost', myOutputFromPuppeteer)
-    await cloudant.use('pinit-test-linh').insert(myOutputFromPuppeteer)
-    //check the condition, then send 201 response, if not, then send 404
-    res.status(201).send(myOutputFromPuppeteer)
-  } catch (error) {
-    res.sendStatus(404)
-  }
-})
-//add article to cloudant from puppeteer-
-router.post('/', async (req, res, next) => {
-  console.log('req.body!!!!!', req.body)
-  try {
-    const {url} = req.body
-    console.log('post route-url passed!!!!!!!', url)
+    console.log('post route-url passed', url)
     const myOutputFromPuppeteer = await puppeteerArticle(url)
     await cloudant.use('pinit-test-linh').insert(myOutputFromPuppeteer) //cloudant
+    myLocalDB.sync(remotedb)
+    myLocalDB
+      .allDocs({
+        include_docs: true,
+        attachments: true
+      })
+      .then(function(result) {
+        console.log(result.rows[0]._id)
+      })
+      .catch(function(err) {
+        console.log(err)
+      })
+
     res.send(myOutputFromPuppeteer)
   } catch (error) {
     console.log('Error in add article axios.post', error)
@@ -93,30 +76,3 @@ myLocalDB.sync(remotedb, {
   retry: true
 })
 module.exports = router
-
-//get single article- not done- complete after all articles
-//delete if added to thunk
-// router.get('/singleArticle', (req, res, next) => {
-//   try {
-//     //README- need to request article for single article view
-//     // const singleArticle = await cloudant.use('pinit-test-linh').get()
-//     // res.send(singleArticle)
-//   } catch (error) {
-//     console.log('Error in get article api', error)
-//     next(error)
-//   }
-// })
-
-// async function asyncCall() {
-//   const myOutputFromPuppeteer = await puppeteerArticle()
-//   //await cloudant.db.create('test');
-//   return cloudant.use('pinit-test-linh').insert(myOutputFromPuppeteer)
-// }
-
-// asyncCall()
-//   .then((data) => {
-//     console.log(data)
-//   })
-//   .catch((err) => {
-//     console.log(err)
-//   })
