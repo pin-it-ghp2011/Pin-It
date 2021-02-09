@@ -5,7 +5,8 @@ import {fetchSingleArticleThunk} from '../store/singleArticle'
 class SingleArticle extends React.Component {
   componentDidMount() {
     console.log(`the beginning of componentdidmount single article`)
-    this.props.loadSingleArticle()
+    const {articleId} = this.props.match.params
+    this.props.loadSingleArticle(articleId) //get id from component props
     //below part of original axios call-save until store thunk works
     // const url = 'https://en.wikipedia.org/wiki/Groundhog_Day';
     //let scrapedArticle = await axios.get(`/api/singleArticle/`)
@@ -40,7 +41,7 @@ const mapState = state => {
 }
 
 const mapDispatch = dispatch => ({
-  loadSingleArticle: () => dispatch(fetchSingleArticleThunk()) //linter doesnt like url in here?
+  loadSingleArticle: articleID => dispatch(fetchSingleArticleThunk(articleId)) //linter doesnt like url in here?
 })
 
 export default connect(mapState, mapDispatch)(SingleArticle)

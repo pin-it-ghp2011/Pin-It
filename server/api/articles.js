@@ -30,7 +30,7 @@ const puppeteerArticle = async url => {
   }
   return articleObj
 }
-
+//get all articles from local db
 router.get('/', async (req, res, next) => {
   try {
     const allArticles = await myLocalDB.allDocs({
@@ -39,49 +39,52 @@ router.get('/', async (req, res, next) => {
     })
     res.send(allArticles)
   } catch (error) {
-    console.log('Error in get aa articles api', error)
+    console.log('Error in get all articles api', error)
     next(error)
   }
 })
 
-//add article to cloudant from puppeteer-from addArticle thunk
+//get single articles from local db
+router.get('/:id', async (req, res, next) => {
+  try {
+    const {id} = req.params
+    const singleArticle = await myLocalDB.get({
+      _id: `${id}`,
+      attachments: true
+    })
+    res.send(singleArticle)
+  } catch (error) {
+    console.log('Error in get single article api', error)
+    next(error)
+  }
+})
+
+//add article to cloudant from puppeteer-
 router.post('/', async (req, res, next) => {
   try {
     const {url} = req.body
     console.log('post route-url passed', url)
     const myOutputFromPuppeteer = await puppeteerArticle(url)
     await cloudant.use('pinit-test-linh').insert(myOutputFromPuppeteer) //cloudant
-
     res.send(myOutputFromPuppeteer)
   } catch (error) {
     console.log('Error in add article axios.post', error)
     next(error)
   }
 })
+//check to see if works with chrome extension
+router.post('/extension/:url', async (req, res) => {
+  try {
+    const {url} = req.params
+    const myOutputFromPuppeteer = await puppeteerArticle(url)
+    await cloudant.use('pinit-test-linh').insert(myOutputFromPuppeteer)
+    //check the condition, then send 201 response, if not, then send 404
+    res.status(201).send(myOutputFromPuppeteer)
+  } catch (error) {
+    res.sendStatus(404)
+  }
+})
 
-// router.post('/:url', async (req, res, next) => {
-//   try {
-//     const myOutputFromPuppeteer = await puppeteerArticle(req.params.url)
-//     cloudant.use('pinit-test-linh').insert(myOutputFromPuppeteer)
-//     //check the condition, then send 201 response, if not, then send 404
-//     res.sendStatus(201)
-//   } catch (error) {
-//     next(error)
-//   }
-// })
-// async function asyncCall() {
-//   const myOutputFromPuppeteer = await puppeteerArticle()
-//   //await cloudant.db.create('test');
-//   return cloudant.use('pinit-test-linh').insert(myOutputFromPuppeteer)
-// }
-
-// asyncCall()
-//   .then((data) => {
-//     console.log(data)
-//   })
-//   .catch((err) => {
-//     console.log(err)
-//   })
 myLocalDB.sync(remotedb, {
   live: true,
   retry: true
@@ -101,15 +104,16 @@ module.exports = router
 //   }
 // })
 
-//do we need?
-// await myLocalDB
-//   .allDocs({
-//     include_docs: true,
-//     attachments: true,
+// async function asyncCall() {
+//   const myOutputFromPuppeteer = await puppeteerArticle()
+//   //await cloudant.db.create('test');
+//   return cloudant.use('pinit-test-linh').insert(myOutputFromPuppeteer)
+// }
+
+// asyncCall()
+//   .then((data) => {
+//     console.log(data)
 //   })
-//   .then(function (result) {
-//     console.log(result.rows[0]._id)
-//   })
-//   .catch(function (err) {
+//   .catch((err) => {
 //     console.log(err)
 //   })

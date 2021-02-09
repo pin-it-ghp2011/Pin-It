@@ -18,7 +18,6 @@ export class AllArticles extends React.Component {
     return (
       <div>
         <div>
-          {/* <h2>{firstArticle.doc.title}</h2> */}
           {articles.map(article => {
             return (
               <div key={article.id}>
