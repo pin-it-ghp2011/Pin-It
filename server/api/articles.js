@@ -54,14 +54,11 @@ router.post('/', async (req, res, next) => {
 
 router.post('/:url', async (req, res, next) => {
   try {
-    console.log('banana')
     const myOutputFromPuppeteer = await puppeteerArticle(req.params.url)
-    console.log(req.params.url, `am i here?`)
     cloudant.use('pinit-test-linh').insert(myOutputFromPuppeteer)
-
-    res.send(myOutputFromPuppeteer)
+    //check the condition, then send 201 response, if not, then send 404
+    res.sendStatus(201)
   } catch (error) {
-    console.log('Error in adding article through the chrome extension!')
     next(error)
   }
 })
