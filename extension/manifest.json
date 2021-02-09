@@ -7,11 +7,11 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["popup.js", "content.js"]
+      "js": ["popup.js"]
     }
   ],
   "browser_action": {
-    "default_title": "Pin It Extension",
+    "default_title": "Pin It",
     "default_popup": "popup.html",
     "default_icon": "pinitLogo.png"
   }
