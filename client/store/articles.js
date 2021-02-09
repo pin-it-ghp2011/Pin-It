@@ -36,7 +36,7 @@ export const addArticleThunk = url => {
       //console.log('add article thunk before axios-url', url)
       const articleUrl = {url: url}
       const {data} = await axios.post(`/api/articles`, articleUrl) // this needs to be fixed= needs matching route/local storage
-      console.log('add article thunkafter axios:data', data)
+      console.log('add article thunk, after axios:data', data)
       dispatch(addArticle(data))
     } catch (error) {
       console.log('something is wrong in the addArticles thunk:', error)
@@ -44,13 +44,13 @@ export const addArticleThunk = url => {
   }
 }
 
-export default function articlesReducer(state = [], action) {
-  console.log('articlesReducer:action.type', action.type.article)
+export default function articlesReducer(state = {}, action) {
+  //console.log('articlesReducer:action.type', action.type.article)
   switch (action.type) {
     case GET_ARTICLES:
       return action.articles
     case ADD_ARTICLE:
-      return [...state, action.article]
+      return {...state, article: action.article}
     default:
       return state
   }
