@@ -58,30 +58,33 @@ router.get('/:id', async (req, res, next) => {
     next(error)
   }
 })
-
+//check to see if works with chrome extension
+router.post('/extension/:url', async (req, res) => {
+  console.log('xxxxxxxxxxdxxxx')
+  try {
+    const {url} = req.params
+    console.log('extension post', url)
+    const myOutputFromPuppeteer = await puppeteerArticle(url)
+    console.log('extension outpost', myOutputFromPuppeteer)
+    await cloudant.use('pinit-test-linh').insert(myOutputFromPuppeteer)
+    //check the condition, then send 201 response, if not, then send 404
+    res.status(201).send(myOutputFromPuppeteer)
+  } catch (error) {
+    res.sendStatus(404)
+  }
+})
 //add article to cloudant from puppeteer-
 router.post('/', async (req, res, next) => {
+  console.log('req.body!!!!!', req.body)
   try {
     const {url} = req.body
-    console.log('post route-url passed', url)
+    console.log('post route-url passed!!!!!!!', url)
     const myOutputFromPuppeteer = await puppeteerArticle(url)
     await cloudant.use('pinit-test-linh').insert(myOutputFromPuppeteer) //cloudant
     res.send(myOutputFromPuppeteer)
   } catch (error) {
     console.log('Error in add article axios.post', error)
     next(error)
-  }
-})
-//check to see if works with chrome extension
-router.post('/extension/:url', async (req, res) => {
-  try {
-    const {url} = req.params
-    const myOutputFromPuppeteer = await puppeteerArticle(url)
-    await cloudant.use('pinit-test-linh').insert(myOutputFromPuppeteer)
-    //check the condition, then send 201 response, if not, then send 404
-    res.status(201).send(myOutputFromPuppeteer)
-  } catch (error) {
-    res.sendStatus(404)
   }
 })
 
