@@ -12,18 +12,21 @@ export class AllArticles extends React.Component {
   }
 
   render() {
-    //const {articles} = this.props.articles.rows
-    console.log('all articles', this.props.articles.rows)
+    const articles = this.props.articles.rows || []
+    console.log('all articles', articles)
+
     return (
       <div>
-        <div className="list-view">
-          {/* {articles.map((article) => {
+        <div>
+          {/* <h2>{firstArticle.doc.title}</h2> */}
+          {articles.map(article => {
             return (
               <div key={article.id}>
-
+                <h2>{article.doc.title}</h2>
+                <h2>{article.id}</h2>
               </div>
             )
-          })} */}
+          })}
         </div>
       </div>
     )
