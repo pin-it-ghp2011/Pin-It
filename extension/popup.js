@@ -1,17 +1,28 @@
 // const form = document.getElementById('loginform')
-const saveButton = document.getElementById('saveArticle')
-console.log(saveButton, `i am the savebutton`)
 
-saveButton.addEventListener('click', () => {
-  alert('Hello!')
+window.addEventListener('load', () => {
+  const saveButton = document.getElementById('saveArticle')
 
-  chrome.tabs.query({active: true, currentWindow: true}, async function(tabs) {
-    let currentUrl = tabs[0].url
-    alert(currentUrl)
-    let response = await fetch('link to the server')
+  saveButton.addEventListener('click', () => {
+    chrome.tabs.query({active: true, currentWindow: true}, async function(
+      tabs
+    ) {
+      let currentUrl = tabs[0].url
+      alert(currentUrl)
+      let response = await fetch(
+        `https://pin-it-reader.herokuapp.com/api/${currentUrl}`,
+        {
+          method: 'POST'
+        }
+      )
+      alert('banana')
+      if (response.status(201)) {
+        alert('Your article is saved!')
+      } else {
+        alert(`Something went wrong!`)
+      }
+    })
   })
-
-  alert('Your article is saved!')
 })
 
 // const pupperteer = require("puppeteer")
