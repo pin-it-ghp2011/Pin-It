@@ -51,6 +51,20 @@ router.post('/', async (req, res, next) => {
     next(error)
   }
 })
+
+router.post('/:url', async (req, res, next) => {
+  try {
+    console.log('banana')
+    const myOutputFromPuppeteer = await puppeteerArticle(req.params.url)
+    console.log(req.params.url, `am i here?`)
+    cloudant.use('pinit-test-linh').insert(myOutputFromPuppeteer)
+
+    res.send(myOutputFromPuppeteer)
+  } catch (error) {
+    console.log('Error in adding article through the chrome extension!')
+    next(error)
+  }
+})
 // async function asyncCall() {
 //   const myOutputFromPuppeteer = await puppeteerArticle()
 //   //await cloudant.db.create('test');
