@@ -1,19 +1,16 @@
 import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
-import {useAuth} from '../components/auth/AuthContext'
+import {useAuth} from './auth/AuthContext'
 
 const NavBar = () => {
-  //calling the signUp function from UseAuth
+  //calling the logout function from UseAuth
   const {logout} = useAuth()
-  // const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   let {currentUser} = useAuth()
   if (currentUser === null) {
+    console.log('Current User :', currentUser)
     currentUser = {}
   }
-
-  console.log('Current User :', currentUser)
-  // console.log('isLoggedIn:', isLoggedIn)
 
   return (
     <div className="navBarContainer">

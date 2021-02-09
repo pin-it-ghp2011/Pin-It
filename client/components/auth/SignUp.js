@@ -56,11 +56,13 @@ const SignUp = () => {
 
       //send the data and create the user in firebase Auth
       await signup(email, password)
+      setName('')
+      setEmail('')
+      setPassword('')
+      setConfirmedPassword(confirmedPassword)
     } catch (err) {
       console.log(err)
     }
-    setEmail('')
-    setPassword('')
   }
 
   return (
@@ -90,7 +92,7 @@ const SignUp = () => {
         <div className="buttonDiv">
           <button type="submit">SignUp</button>
         </div>
-        <div>Error:{error}</div>
+        <div>{error}</div>
       </form>
     </div>
   )
