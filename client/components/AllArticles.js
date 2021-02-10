@@ -23,7 +23,7 @@ export class AllArticles extends React.Component {
             return (
               <div key={article.id}>
                 <h2>
-                  <Link to={`/allArticles/${article.id}`}>
+                  <Link to={`/articles/${article.id}`}>
                     Title: {article.doc.title}
                   </Link>
                 </h2>

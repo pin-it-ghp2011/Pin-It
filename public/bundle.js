@@ -300,7 +300,7 @@ var AllArticles = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           key: article.id
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-          to: "/allArticles/".concat(article.id)
+          to: "/articles/".concat(article.id)
         }, "Title: ", article.doc.title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, article.id));
       })));
     }
@@ -1124,7 +1124,6 @@ var Routes = /*#__PURE__*/function (_Component) {
     //   this.props.loadInitialData()
     // }
     function render() {
-      var isLoggedIn = this.props.isLoggedIn;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["BrowserRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/login",
@@ -1139,14 +1138,14 @@ var Routes = /*#__PURE__*/function (_Component) {
         component: _components__WEBPACK_IMPORTED_MODULE_4__["UserHome"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
-        path: "/allArticles",
+        path: "/articles",
         component: _components__WEBPACK_IMPORTED_MODULE_4__["AllArticles"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/addArticle",
         component: _components__WEBPACK_IMPORTED_MODULE_4__["AddArticle"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-        path: "/allArticles/:articleId",
+        path: "/articles/:articleId",
         component: _components__WEBPACK_IMPORTED_MODULE_4__["SingleArticle"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
         to: "/login"
@@ -1310,29 +1309,30 @@ var addArticleThunk = function addArticleThunk(url) {
               articleUrl = {
                 url: url
               };
-              _context2.next = 4;
+              console.log('IN ARTICLES THUNK', articleUrl);
+              _context2.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/articles", articleUrl);
 
-            case 4:
+            case 5:
               _yield$axios$post = _context2.sent;
               data = _yield$axios$post.data;
               // this needs to be fixed= needs matching route/local storage
               console.log('add article thunk, after axios:data', data);
               dispatch(addArticle(data));
-              _context2.next = 13;
+              _context2.next = 14;
               break;
 
-            case 10:
-              _context2.prev = 10;
+            case 11:
+              _context2.prev = 11;
               _context2.t0 = _context2["catch"](0);
               console.log('something is wrong in the addArticles thunk:', _context2.t0);
 
-            case 13:
+            case 14:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[0, 10]]);
+      }, _callee2, null, [[0, 11]]);
     }));
 
     return function (_x2) {

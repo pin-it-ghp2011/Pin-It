@@ -35,6 +35,7 @@ export const addArticleThunk = url => {
     try {
       //console.log('add article thunk before axios-url', url)
       const articleUrl = {url: url}
+      console.log('IN ARTICLES THUNK', articleUrl)
       const {data} = await axios.post(`/api/articles`, articleUrl) // this needs to be fixed= needs matching route/local storage
       console.log('add article thunk, after axios:data', data)
       dispatch(addArticle(data))
