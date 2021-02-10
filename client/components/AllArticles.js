@@ -14,7 +14,7 @@ export class AllArticles extends React.Component {
   render() {
     const articles = this.props.articles.rows || []
     console.log('all articles', articles)
-    console.log('singleArticle1', articles[0])
+    console.log('article1', articles[0])
 
     return (
       <div>
