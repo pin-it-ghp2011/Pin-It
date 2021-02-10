@@ -14,15 +14,15 @@ import firebase from '../config/firebaseConfig'
 const App = () => {
   return (
     <div>
-      <AuthProvider>
-        <NavBar />
-        <Routes />
-        {/* <SignUp />
+      {/* <AuthProvider> */}
+      {/* <NavBar /> */}
+      <Routes />
+      {/* <SignUp />
         <LogIn /> */}
-        <AddArticle />
-        <AllArticles />
-        {/* <SingleArticle /> */}
-      </AuthProvider>
+      {/* <AddArticle />
+      <AllArticles /> */}
+      {/* <SingleArticle /> */}
+      {/* </AuthProvider> */}
     </div>
   )
 }

@@ -116,7 +116,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_auth_AuthContext__WEBPACK_IMPORTED_MODULE_3__["AuthProvider"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components__WEBPACK_IMPORTED_MODULE_1__["NavBar"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_routes__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_AddArticle__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_AllArticles__WEBPACK_IMPORTED_MODULE_5__["default"], null)));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_routes__WEBPACK_IMPORTED_MODULE_2__["default"], null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
@@ -300,7 +300,7 @@ var AllArticles = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           key: article.id
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-          to: "/articles/".concat(article.id)
+          to: "/allArticles/".concat(article.id)
         }, "Title: ", article.doc.title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, article.id));
       })));
     }
@@ -432,10 +432,11 @@ var SingleArticle = /*#__PURE__*/function (_React$Component) {
   _createClass(SingleArticle, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      console.log("the beginning of componentdidmount single article");
-      console.log('this.props.match.params', this.props.match.params); // const {articleId} = this.props.match.params.articleId
+      console.log("the beginning of componentdidmount single article"); // console.log('this.props.match.params', this.props.match.params)
 
-      var articleId = '2021-02-09T22:52:28.565Z';
+      var articleId = this.props.match.params.articleId;
+      console.log('articleId', articleId); // const articleId = '2021-02-09T22:52:28.565Z'
+
       this.props.loadSingleArticle(articleId); //get id from component props
       //below part of original axios call-save until store thunk works
       // const url = 'https://en.wikipedia.org/wiki/Groundhog_Day';
@@ -447,8 +448,10 @@ var SingleArticle = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log('single article- props:', this.props);
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.props), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null));
+      // (this.props.article)?
+      var title = this.props.article ? this.props.article.title : null;
+      console.log('single article- props:', this.props.article);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hello World"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, title && this.props.article.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null));
     }
   }]);
 
@@ -463,7 +466,7 @@ var SingleArticle = /*#__PURE__*/function (_React$Component) {
 
 var mapState = function mapState(state) {
   return {
-    article: state.SingleArticle
+    article: state.singleArticle
   };
 };
 
@@ -923,14 +926,14 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "AuthProvider", function() { return _auth_AuthContext__WEBPACK_IMPORTED_MODULE_4__["AuthProvider"]; });
 
-/* harmony import */ var _components_SingleArticle__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/SingleArticle */ "./client/components/SingleArticle.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SingleArticle", function() { return _components_SingleArticle__WEBPACK_IMPORTED_MODULE_5__["default"]; });
+/* harmony import */ var _SingleArticle__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./SingleArticle */ "./client/components/SingleArticle.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SingleArticle", function() { return _SingleArticle__WEBPACK_IMPORTED_MODULE_5__["default"]; });
 
-/* harmony import */ var _components_AddArticle__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/AddArticle */ "./client/components/AddArticle.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "AddArticle", function() { return _components_AddArticle__WEBPACK_IMPORTED_MODULE_6__["default"]; });
+/* harmony import */ var _AddArticle__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./AddArticle */ "./client/components/AddArticle.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "AddArticle", function() { return _AddArticle__WEBPACK_IMPORTED_MODULE_6__["default"]; });
 
-/* harmony import */ var _components_AllArticles__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/AllArticles */ "./client/components/AllArticles.js");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "AllArticles", function() { return _components_AllArticles__WEBPACK_IMPORTED_MODULE_7__["default"]; });
+/* harmony import */ var _AllArticles__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./AllArticles */ "./client/components/AllArticles.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "AllArticles", function() { return _AllArticles__WEBPACK_IMPORTED_MODULE_7__["default"]; });
 
 /**
  * `components/index.js` exists simply as a 'central export' for our components.
@@ -1089,6 +1092,14 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+ // import {
+//   LogIn,
+//   SignUp,
+//   UserHome,
+//   SingleArticle,
+//   AddArticle,
+//   AllArticles,
+// } from './components'
 
 
 
@@ -1108,35 +1119,38 @@ var Routes = /*#__PURE__*/function (_Component) {
   }
 
   _createClass(Routes, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.loadInitialData();
-    }
-  }, {
     key: "render",
-    value: function render() {
+    value: // componentDidMount() {
+    //   this.props.loadInitialData()
+    // }
+    function render() {
       var isLoggedIn = this.props.isLoggedIn;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["BrowserRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+        exact: true,
         path: "/login",
         component: _components__WEBPACK_IMPORTED_MODULE_4__["LogIn"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+        exact: true,
         path: "/signup",
         component: _components__WEBPACK_IMPORTED_MODULE_4__["SignUp"]
-      }), isLoggedIn && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+        exact: true,
         path: "/home",
         component: _components__WEBPACK_IMPORTED_MODULE_4__["UserHome"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-        path: "/articles/:articleId",
-        component: _components__WEBPACK_IMPORTED_MODULE_4__["SingleArticle"]
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+        exact: true,
         path: "/allArticles",
         component: _components__WEBPACK_IMPORTED_MODULE_4__["AllArticles"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-        path: "/allArticles",
-        component: _components__WEBPACK_IMPORTED_MODULE_4__["AddArticles"]
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-        component: _components__WEBPACK_IMPORTED_MODULE_4__["LogIn"]
-      }));
+        exact: true,
+        path: "/addArticle",
+        component: _components__WEBPACK_IMPORTED_MODULE_4__["AddArticle"]
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+        path: "/allArticles/:articleId",
+        component: _components__WEBPACK_IMPORTED_MODULE_4__["SingleArticle"]
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
+        to: "/login"
+      })));
     }
   }]);
 
@@ -1165,15 +1179,14 @@ var mapDispatch = function mapDispatch(dispatch) {
 // when the url changes
 
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapState, mapDispatch)(Routes)));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapState, mapDispatch)(Routes));
 /**
  * PROP TYPES
  */
-
-Routes.propTypes = {
-  loadInitialData: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.func.isRequired,
-  isLoggedIn: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.bool.isRequired
-};
+// Routes.propTypes = {
+//   loadInitialData: PropTypes.func.isRequired,
+//   isLoggedIn: PropTypes.bool.isRequired,
+// }
 
 /***/ }),
 
@@ -1436,7 +1449,7 @@ var getSingleArticle = function getSingleArticle(article) {
   };
 }; //thunk-
 
-var fetchSingleArticleThunk = function fetchSingleArticleThunk(docId) {
+var fetchSingleArticleThunk = function fetchSingleArticleThunk(articleId) {
   return /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch) {
       var _yield$axios$get, data;
@@ -1448,7 +1461,7 @@ var fetchSingleArticleThunk = function fetchSingleArticleThunk(docId) {
               _context.prev = 0;
               console.log('get single article thunk before axios');
               _context.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/articles/".concat(docId));
+              return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/articles/".concat(articleId));
 
             case 4:
               _yield$axios$get = _context.sent;
@@ -1699,7 +1712,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! firebase/auth */ "./node_modules/firebase/auth/dist/index.esm.js");
 
 
- // Your web app's Firebase configuration
+ // // Your web app's Firebase configuration
 
 var firebaseConfig = {
   apiKey: 'AIzaSyCvjPTDy9pi47E6qWXGnzj4Z1knQ7MLs_Q',
@@ -1708,7 +1721,17 @@ var firebaseConfig = {
   storageBucket: 'pinitfinal.appspot.com',
   messagingSenderId: '923757809564',
   appId: '1:923757809564:web:efbc06396ce2c4464c4259'
-}; // Initialize Firebase
+}; // //Your web app's Firebase configuration with .env.local file setup
+// const firebaseConfig = {
+//   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+//   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+//   // databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL, this one is not in our config file
+//   projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+//   storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+//   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+//   appId: process.env.REACT_APP_FIREBASE_APP_ID,
+// }
+// Initialize Firebase
 
 firebase_app__WEBPACK_IMPORTED_MODULE_0__["default"].initializeApp(firebaseConfig);
 /* harmony default export */ __webpack_exports__["default"] = (firebase_app__WEBPACK_IMPORTED_MODULE_0__["default"]);
