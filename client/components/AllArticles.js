@@ -1,5 +1,5 @@
 import React from 'react'
-//import { Link } from 'react-router-dom'; => to get single article
+import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {fetchArticlesThunk} from '../store/articles'
 
@@ -14,6 +14,7 @@ export class AllArticles extends React.Component {
   render() {
     const articles = this.props.articles.rows || []
     console.log('all articles', articles)
+    console.log('singleArticle1', articles[0])
 
     return (
       <div>
@@ -21,7 +22,11 @@ export class AllArticles extends React.Component {
           {articles.map(article => {
             return (
               <div key={article.id}>
-                <h2>{article.doc.title}</h2>
+                <h2>
+                  <Link to={`/articles/${article.id}`}>
+                    Title: {article.doc.title}
+                  </Link>
+                </h2>
                 <h2>{article.id}</h2>
               </div>
             )
