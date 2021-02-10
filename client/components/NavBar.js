@@ -25,7 +25,7 @@ const NavBar = () => {
               Logout
             </a>
             <Link to="/addArticle"> " Add Article " </Link>
-            <Link to="/singleArticle">" Single Article "</Link>
+            <Link to="/allArticle">" All Article "</Link>
           </div>
         ) : (
           <div>
