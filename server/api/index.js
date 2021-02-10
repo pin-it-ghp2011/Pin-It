@@ -6,7 +6,7 @@ router.use('/users', require('./users'))
 //router.use('/singleArticle', require('./singleArticle'))
 
 router.use((req, res, next) => {
-  const error = new Error('Not Found')
+  const error = new Error('Do we get another error message?')
   error.status = 404
   next(error)
 })

@@ -295,12 +295,12 @@ var AllArticles = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var articles = this.props.articles.rows || [];
       console.log('all articles', articles);
-      console.log('singleArticle1', articles[0]);
+      console.log('article1', articles[0]);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, articles.map(function (article) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           key: article.id
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-          to: "/allArticles/".concat(article.id)
+          to: "/articles/".concat(article.id)
         }, "Title: ", article.doc.title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, article.id));
       })));
     }
@@ -432,34 +432,30 @@ var SingleArticle = /*#__PURE__*/function (_React$Component) {
   _createClass(SingleArticle, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      console.log("the beginning of componentdidmount single article"); // console.log('this.props.match.params', this.props.match.params)
-
+      console.log("the beginning of componentdidmount single article");
       var articleId = this.props.match.params.articleId;
-      console.log('articleId', articleId); // const articleId = '2021-02-09T22:52:28.565Z'
-
-      this.props.loadSingleArticle(articleId); //get id from component props
-      //below part of original axios call-save until store thunk works
-      // const url = 'https://en.wikipedia.org/wiki/Groundhog_Day';
-      //let scrapedArticle = await axios.get(`/api/singleArticle/`)
-      //let article = scrapedArticle.data
-      //console.log(scrapedArticle, `do i exist??`, article)
-      //this.setState({article: article})
+      console.log('articleId', articleId);
+      this.props.loadSingleArticle(articleId);
     }
   }, {
     key: "render",
     value: function render() {
-      // (this.props.article)?
+      var body = this.props.article ? this.props.article.body : null;
       var title = this.props.article ? this.props.article.title : null;
-      console.log('single article- props:', this.props.article);
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hello World"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null));
+      console.log('SINGLE ARTICLE PROPS: ', this.props);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.article ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        dangerouslySetInnerHTML: {
+          __html: body
+        }
+      }) : null));
     }
   }]);
 
   return SingleArticle;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component); // const Article = (props) => {
-//   //console.log('Article in SingleArticle props', props.content)
-//   return props.content.body && props.content.body.length ? (
-//     <div dangerouslySetInnerHTML={{__html: props.content.body}} />
+//   console.log('Article in SingleArticle props', props.content)
+//   return props.content && props.content.length ? (
+//     <div dangerouslySetInnerHTML={{__html: props.content}} />
 //   ) : null
 // }
 
@@ -474,8 +470,7 @@ var mapDispatch = function mapDispatch(dispatch) {
   return {
     loadSingleArticle: function loadSingleArticle(articleId) {
       return dispatch(Object(_store_singleArticle__WEBPACK_IMPORTED_MODULE_2__["fetchSingleArticleThunk"])(articleId));
-    } //linter doesnt like url in here?
-
+    }
   };
 };
 
@@ -1124,7 +1119,6 @@ var Routes = /*#__PURE__*/function (_Component) {
     //   this.props.loadInitialData()
     // }
     function render() {
-      var isLoggedIn = this.props.isLoggedIn;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["BrowserRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/login",
@@ -1139,14 +1133,14 @@ var Routes = /*#__PURE__*/function (_Component) {
         component: _components__WEBPACK_IMPORTED_MODULE_4__["UserHome"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
-        path: "/allArticles",
+        path: "/articles",
         component: _components__WEBPACK_IMPORTED_MODULE_4__["AllArticles"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/addArticle",
         component: _components__WEBPACK_IMPORTED_MODULE_4__["AddArticle"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-        path: "/allArticles/:articleId",
+        path: "/articles/:articleId",
         component: _components__WEBPACK_IMPORTED_MODULE_4__["SingleArticle"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
         to: "/login"
@@ -1240,7 +1234,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var GET_ARTICLES = 'GET_ARTICLES';
 var ADD_ARTICLE = 'ADD_ARTICLE'; //action creators
-//get all articles
 
 var getArticles = function getArticles(articles) {
   return {
@@ -1254,8 +1247,7 @@ var addArticle = function addArticle(url) {
     type: ADD_ARTICLE,
     url: url
   };
-}; //fetch all artciles (add user key later if we get there)
-
+};
 var fetchArticlesThunk = function fetchArticlesThunk() {
   return /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch) {
@@ -1294,8 +1286,7 @@ var fetchArticlesThunk = function fetchArticlesThunk() {
       return _ref.apply(this, arguments);
     };
   }();
-}; //it works!!
-
+};
 var addArticleThunk = function addArticleThunk(url) {
   return /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(dispatch) {
@@ -1306,33 +1297,32 @@ var addArticleThunk = function addArticleThunk(url) {
           switch (_context2.prev = _context2.next) {
             case 0:
               _context2.prev = 0;
-              //console.log('add article thunk before axios-url', url)
               articleUrl = {
                 url: url
               };
-              _context2.next = 4;
+              console.log('IN ARTICLES THUNK', articleUrl);
+              _context2.next = 5;
               return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/articles", articleUrl);
 
-            case 4:
+            case 5:
               _yield$axios$post = _context2.sent;
               data = _yield$axios$post.data;
-              // this needs to be fixed= needs matching route/local storage
               console.log('add article thunk, after axios:data', data);
               dispatch(addArticle(data));
-              _context2.next = 13;
+              _context2.next = 14;
               break;
 
-            case 10:
-              _context2.prev = 10;
+            case 11:
+              _context2.prev = 11;
               _context2.t0 = _context2["catch"](0);
               console.log('something is wrong in the addArticles thunk:', _context2.t0);
 
-            case 13:
+            case 14:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[0, 10]]);
+      }, _callee2, null, [[0, 11]]);
     }));
 
     return function (_x2) {
@@ -1344,15 +1334,14 @@ function articlesReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
-  //console.log('articlesReducer:action.type', action.type.article)
   switch (action.type) {
     case GET_ARTICLES:
       return action.articles;
 
     case ADD_ARTICLE:
-      return _objectSpread(_objectSpread({}, state), {}, {
+      return _objectSpread({
         article: action.article
-      });
+      }, state);
 
     default:
       return state;
