@@ -3,17 +3,24 @@ import axios from 'axios'
 //action type
 const GET_ARTICLES = 'GET_ARTICLES'
 const ADD_ARTICLE = 'ADD_ARTICLE'
-
+const DELETE_ARTICLE = 'DELETE_ARTICLE'
 //action creators
 export const getArticles = articles => ({
   type: GET_ARTICLES,
   articles
 })
 
-//add and article by url on webpage
+//add an article by url on webpage
 export const addArticle = url => ({
   type: ADD_ARTICLE,
   url
+})
+
+//delete article by articleId
+
+export const deleteArticle = article => ({
+  type: DELETE_ARTICLE,
+  article
 })
 
 export const fetchArticlesThunk = () => {
@@ -42,12 +49,25 @@ export const addArticleThunk = url => {
   }
 }
 
+export const removeArticleThunk = article => {
+  return async dispatch => {
+    try {
+      await axios.delete(`/api/articles/${article.id}`)
+      dispatch(deleteArticle(article))
+    } catch (error) {
+      console.log('ERROR in DELETE Article thunk:', error)
+    }
+  }
+}
+
 export default function articlesReducer(state = {}, action) {
   switch (action.type) {
     case GET_ARTICLES:
       return action.articles
     case ADD_ARTICLE:
       return {article: action.article, ...state}
+    case DELETE_ARTICLE:
+      return state.filter(article => article.id !== action.article.id)
     default:
       return state
   }
