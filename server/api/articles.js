@@ -44,6 +44,19 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+//get singleArticle from myLocalDB
+
+router.get('/:docId', async (req, res, next) => {
+  const docId = req.params.docId
+  try {
+    const article = await myLocalDB.get(docId)
+    res.send(article)
+  } catch (error) {
+    console.log('Error in get aa articles api', error)
+    next(error)
+  }
+})
+
 //add article to cloudant from puppeteer-from addArticle thunk
 router.post('/', async (req, res, next) => {
   try {

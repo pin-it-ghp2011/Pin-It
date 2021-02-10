@@ -8,12 +8,13 @@ export const getSingleArticle = article => ({
   article
 })
 
-//thunk- README-
-export const fetchSingleArticleThunk = articleId => {
+//thunk-
+
+export const fetchSingleArticleThunk = docId => {
   return async dispatch => {
     try {
-      console.log('get single article thunk before axios, article id')
-      const {data} = await axios.get(`/api/articles/${articleId}`)
+      console.log('get single article thunk before axios')
+      const {data} = await axios.get(`/api/articles/${docId}`)
       dispatch(getSingleArticle(data))
     } catch (error) {
       console.log('something is wrong in the getSingleArticle thunk:', error)
