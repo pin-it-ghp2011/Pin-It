@@ -26,7 +26,7 @@ class SingleArticle extends React.Component {
     return (
       <div>
         <h1>Hello World</h1>
-        <h1>{title && this.props.article.title}</h1>
+        <h1>{title}</h1>
         <div>
           {/* {this.state.article ? <Article content={this.props.article} /> : null} */}
         </div>
