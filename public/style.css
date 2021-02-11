@@ -1,5 +1,7 @@
 body {
   font-family: 'Roboto', sans-serif;
+  background: linear-gradient(#ffffff, #efe1d1);
+  background-attachment: fixed;
 }
 
 a {
