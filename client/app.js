@@ -13,7 +13,7 @@ const App = () => {
   return (
     <div>
       {/* <AuthProvider> */}
-      <NavBar />
+      {/* <NavBar /> */}
 
       <Routes />
       {/* <SignUp />

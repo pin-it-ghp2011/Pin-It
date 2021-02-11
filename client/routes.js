@@ -4,10 +4,9 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Redirect,
-  NavLink
+  Redirect
 } from 'react-router-dom'
-//import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 // import {
 //   LogIn,
 //   SignUp,
@@ -18,8 +17,8 @@ import {
 // } from './components'
 
 import {
-  // LogIn,
-  // SignUp,
+  LogIn,
+  SignUp,
   Home,
   SingleArticle,
   AddArticle,
@@ -39,11 +38,6 @@ class Routes extends Component {
   render() {
     return (
       <Router>
-        <nav>
-          <NavLink to="/addArticle"> Add Article </NavLink>
-          <NavLink to="/articles"> All Article </NavLink>
-        </nav>
-
         <Switch>
           {/* Routes placed here are available to all visitors */}
           {/* <Route exact path="/login" component={LogIn} />
@@ -53,7 +47,7 @@ class Routes extends Component {
 
           <Route exact path="/" component={Home} />
           <Route exact path="/addArticle" component={AddArticle} />
-          <Route exact path="/articles" component={AllArticles} />
+          <Route path="/articles" component={AllArticles} />
 
           <Route path="/articles/:articleId" component={SingleArticle} />
 
