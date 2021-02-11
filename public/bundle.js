@@ -97,26 +97,19 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components */ "./client/components/index.js");
-/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./routes */ "./client/routes.js");
-/* harmony import */ var _components_auth_AuthContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/auth/AuthContext */ "./client/components/auth/AuthContext.js");
-/* harmony import */ var _components_AddArticle__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/AddArticle */ "./client/components/AddArticle.js");
-/* harmony import */ var _components_AllArticles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/AllArticles */ "./client/components/AllArticles.js");
-/* harmony import */ var _config_firebaseConfig__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../config/firebaseConfig */ "./config/firebaseConfig.js");
+/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./routes */ "./client/routes.js");
+/* harmony import */ var _components_NavBar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/NavBar */ "./client/components/NavBar.js");
 
-
-
- //temporary
+ //import {AuthProvider} from './components/auth/AuthContext'
+//temporary
 //import SignUp from './components/SignUp'
 //import LogIn from './components/Login'
 
  //mport SingleArticle from './components/SingleArticle'
-
-
-
+//import firebase from '../config/firebaseConfig'
 
 var App = function App() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_routes__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_NavBar__WEBPACK_IMPORTED_MODULE_2__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_routes__WEBPACK_IMPORTED_MODULE_1__["default"], null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
@@ -374,6 +367,27 @@ var mapDispatch = function mapDispatch(dispatch) {
 
 /***/ }),
 
+/***/ "./client/components/Home.js":
+/*!***********************************!*\
+  !*** ./client/components/Home.js ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var Home = function Home() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Hello");
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Home);
+
+/***/ }),
+
 /***/ "./client/components/NavBar.js":
 /*!*************************************!*\
   !*** ./client/components/NavBar.js ***!
@@ -393,33 +407,19 @@ __webpack_require__.r(__webpack_exports__);
 
 var NavBar = function NavBar() {
   //calling the logout function from UseAuth
-  var _useAuth = Object(_auth_AuthContext__WEBPACK_IMPORTED_MODULE_2__["useAuth"])(),
-      logout = _useAuth.logout;
-
-  var _useAuth2 = Object(_auth_AuthContext__WEBPACK_IMPORTED_MODULE_2__["useAuth"])(),
-      currentUser = _useAuth2.currentUser;
-
-  if (currentUser === null) {
-    console.log('Current User :', currentUser);
-    currentUser = {};
-  }
-
+  //const {logout} = useAuth()
+  // let {currentUser} = useAuth()
+  // if (currentUser === null) {
+  //   console.log('Current User :', currentUser)
+  //   currentUser = {}
+  // }
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "navBarContainer"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Current User : ", currentUser.email), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "/"
-  }, "PinIt \"(Logo)\"")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, currentUser.email ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "Log Out",
-    onClick: logout
-  }, "Logout"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/addArticle"
-  }, " \" Add Article \" "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "/allArticle"
-  }, "\" All Article \"")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "/login"
-  }, " Log In "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "/signup"
-  }, " Sign Up "))));
+  }, " Add Article "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/articles"
+  }, " All Article ")));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (NavBar);
@@ -946,7 +946,7 @@ var SignUp = function SignUp() {
 /*!************************************!*\
   !*** ./client/components/index.js ***!
   \************************************/
-/*! exports provided: NavBar, UserHome, LogIn, SignUp, useAuth, AuthProvider, SingleArticle, AddArticle, AllArticles */
+/*! exports provided: NavBar, UserHome, LogIn, SignUp, useAuth, AuthProvider, SingleArticle, AddArticle, AllArticles, Home */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -977,11 +977,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _AllArticles__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./AllArticles */ "./client/components/AllArticles.js");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "AllArticles", function() { return _AllArticles__WEBPACK_IMPORTED_MODULE_7__["default"]; });
 
+/* harmony import */ var _Home__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Home */ "./client/components/Home.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Home", function() { return _Home__WEBPACK_IMPORTED_MODULE_8__["default"]; });
+
 /**
  * `components/index.js` exists simply as a 'central export' for our components.
  * This way, we can import all of our components from the same place, rather than
  * having to figure out which file they belong to!
  */
+
 
 
 
@@ -1168,29 +1172,20 @@ var Routes = /*#__PURE__*/function (_Component) {
     function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["BrowserRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
-        path: "/login",
-        component: _components__WEBPACK_IMPORTED_MODULE_4__["LogIn"]
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-        exact: true,
-        path: "/signup",
-        component: _components__WEBPACK_IMPORTED_MODULE_4__["SignUp"]
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-        exact: true,
-        path: "/home",
-        component: _components__WEBPACK_IMPORTED_MODULE_4__["UserHome"]
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-        exact: true,
-        path: "/articles",
-        component: _components__WEBPACK_IMPORTED_MODULE_4__["AllArticles"]
+        path: "/",
+        component: _components__WEBPACK_IMPORTED_MODULE_4__["Home"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/addArticle",
         component: _components__WEBPACK_IMPORTED_MODULE_4__["AddArticle"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+        path: "/articles",
+        component: _components__WEBPACK_IMPORTED_MODULE_4__["AllArticles"]
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/articles/:articleId",
         component: _components__WEBPACK_IMPORTED_MODULE_4__["SingleArticle"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
-        to: "/login"
+        to: "/"
       })));
     }
   }]);

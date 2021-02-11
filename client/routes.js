@@ -19,7 +19,7 @@ import PropTypes from 'prop-types'
 import {
   LogIn,
   SignUp,
-  UserHome,
+  Home,
   SingleArticle,
   AddArticle,
   AllArticles
@@ -40,19 +40,19 @@ class Routes extends Component {
       <Router>
         <Switch>
           {/* Routes placed here are available to all visitors */}
-          <Route exact path="/login" component={LogIn} />
-          <Route exact path="/signup" component={SignUp} />
+          {/* <Route exact path="/login" component={LogIn} />
+          <Route exact path="/signup" component={SignUp} /> */}
 
           {/* Routes placed here are only available after logging in */}
-          <Route exact path="/home" component={UserHome} />
 
-          <Route exact path="/articles" component={AllArticles} />
-
+          <Route exact path="/" component={Home} />
           <Route exact path="/addArticle" component={AddArticle} />
+          <Route path="/articles" component={AllArticles} />
+
           <Route path="/articles/:articleId" component={SingleArticle} />
 
           {/* Displays our Login component as a fallback */}
-          <Redirect to="/login" />
+          <Redirect to="/" />
         </Switch>
       </Router>
     )
