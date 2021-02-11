@@ -13,6 +13,10 @@ const cloudant = new Cloudant({
   password: process.env.CLOUDANT_PASSWORD
 })
 
+myLocalDB.sync(remotedb, {
+  live: true,
+  retry: true
+})
 //const url = 'https://en.wikipedia.org/wiki/Groundhog'
 const puppeteerArticle = async url => {
   const browser = await puppeteer.launch({args: ['--no-sandbox']})
@@ -84,8 +88,4 @@ router.delete('/:docId', async (req, res, next) => {
   }
 })
 
-myLocalDB.sync(remotedb, {
-  live: true,
-  retry: true
-})
 module.exports = router
