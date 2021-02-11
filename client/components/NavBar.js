@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import {useAuth} from './auth/AuthContext'
 
 const NavBar = () => {
@@ -14,7 +14,7 @@ const NavBar = () => {
 
   return (
     <div className="navBarContainer">
-      <div>
+      <nav>
         {/* <h1>Current User : {currentUser.email}</h1>
         <Link to="/">PinIt "(Logo)"</Link>
       </div>
@@ -24,8 +24,8 @@ const NavBar = () => {
             <a href="Log Out" onClick={logout}>
               Logout
             </a> */}
-        <Link to="/addArticle"> Add Article </Link>
-        <Link to="/articles"> All Article </Link>
+        {/* <NavLink to="/addArticle"> Add Article </NavLink>
+        <NavLink to="/articles"> All Article </NavLink> */}
         {/* </div>
         ) : (
           <div>
@@ -33,7 +33,7 @@ const NavBar = () => {
             <Link to="/signup"> Sign Up </Link>
           </div>
         )} */}
-      </div>
+      </nav>
     </div>
   )
 }
