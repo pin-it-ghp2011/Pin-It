@@ -27,8 +27,8 @@ export const fetchArticlesThunk = () => {
   return async dispatch => {
     try {
       const {data} = await axios.get('/api/articles')
-      console.log('in fetch allArticles thunk, data:', data)
-      dispatch(getArticles(data))
+      console.log('in fetch allArticles thunk, data:', data.rows)
+      dispatch(getArticles(data.rows))
     } catch (error) {
       console.log('something is wrong in the fetchArticles thunk:', error)
     }
@@ -60,12 +60,12 @@ export const removeArticleThunk = article => {
   }
 }
 
-export default function articlesReducer(state = {}, action) {
+export default function articlesReducer(state = [], action) {
   switch (action.type) {
     case GET_ARTICLES:
       return action.articles
     case ADD_ARTICLE:
-      return {article: action.article, ...state}
+      return [action.article, ...state]
     case DELETE_ARTICLE:
       return state.filter(article => article.id !== action.article.id)
     default:

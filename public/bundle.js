@@ -279,10 +279,17 @@ var AllArticles = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(AllArticles);
 
-  function AllArticles(props) {
+  function AllArticles() {
+    var _this;
+
     _classCallCheck(this, AllArticles);
 
-    return _super.call(this, props);
+    _this = _super.call(this);
+    _this.state = {
+      clicked: false
+    };
+    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(AllArticles, [{
@@ -291,18 +298,35 @@ var AllArticles = /*#__PURE__*/function (_React$Component) {
       this.props.loadArticles();
     }
   }, {
+    key: "handleClick",
+    value: function handleClick() {
+      this.setState({
+        clicked: true
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      var articles = this.props.articles.rows || [];
-      console.log('all articles', articles);
+      var _this2 = this;
+
+      var articles = this.props.articles || [];
+      console.log('ALL ARTICLES: ', articles);
       console.log('article1', articles[0]);
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, articles.map(function (article) {
+      return articles ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, articles.map(function (article) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           key: article.id
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
           to: "/articles/".concat(article.id)
-        }, "Title: ", article.doc.title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, article.id));
-      })));
+        }, "Title: ", article.doc.title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, article.id), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "column"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "button",
+          className: "remove",
+          onClick: function onClick() {
+            return _this2.props.removeArticle(article);
+          }
+        }, "Remove")));
+      })) : null;
     }
   }]);
 
@@ -319,6 +343,9 @@ var mapDispatch = function mapDispatch(dispatch) {
   return {
     loadArticles: function loadArticles() {
       return dispatch(Object(_store_articles__WEBPACK_IMPORTED_MODULE_3__["fetchArticlesThunk"])());
+    },
+    removeArticle: function removeArticle(article) {
+      return dispatch(Object(_store_articles__WEBPACK_IMPORTED_MODULE_3__["removeArticleThunk"])(article));
     }
   };
 };
@@ -1208,23 +1235,31 @@ socket.on('connect', function () {
 /*!**********************************!*\
   !*** ./client/store/articles.js ***!
   \**********************************/
-/*! exports provided: getArticles, addArticle, fetchArticlesThunk, addArticleThunk, default */
+/*! exports provided: getArticles, addArticle, deleteArticle, fetchArticlesThunk, addArticleThunk, removeArticleThunk, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getArticles", function() { return getArticles; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addArticle", function() { return addArticle; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteArticle", function() { return deleteArticle; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchArticlesThunk", function() { return fetchArticlesThunk; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addArticleThunk", function() { return addArticleThunk; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeArticleThunk", function() { return removeArticleThunk; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return articlesReducer; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
@@ -1233,19 +1268,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
  //action type
 
 var GET_ARTICLES = 'GET_ARTICLES';
-var ADD_ARTICLE = 'ADD_ARTICLE'; //action creators
+var ADD_ARTICLE = 'ADD_ARTICLE';
+var DELETE_ARTICLE = 'DELETE_ARTICLE'; //action creators
 
 var getArticles = function getArticles(articles) {
   return {
     type: GET_ARTICLES,
     articles: articles
   };
-}; //add and article by url on webpage
+}; //add an article by url on webpage
 
 var addArticle = function addArticle(url) {
   return {
     type: ADD_ARTICLE,
     url: url
+  };
+}; //delete article by articleId
+
+var deleteArticle = function deleteArticle(article) {
+  return {
+    type: DELETE_ARTICLE,
+    article: article
   };
 };
 var fetchArticlesThunk = function fetchArticlesThunk() {
@@ -1264,8 +1307,8 @@ var fetchArticlesThunk = function fetchArticlesThunk() {
             case 3:
               _yield$axios$get = _context.sent;
               data = _yield$axios$get.data;
-              console.log('in fetch allArticles thunk, data:', data);
-              dispatch(getArticles(data));
+              console.log('in fetch allArticles thunk, data:', data.rows);
+              dispatch(getArticles(data.rows));
               _context.next = 12;
               break;
 
@@ -1330,8 +1373,42 @@ var addArticleThunk = function addArticleThunk(url) {
     };
   }();
 };
+var removeArticleThunk = function removeArticleThunk(article) {
+  return /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(dispatch) {
+      return regeneratorRuntime.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.prev = 0;
+              _context3.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]("/api/articles/".concat(article.id));
+
+            case 3:
+              dispatch(deleteArticle(article));
+              _context3.next = 9;
+              break;
+
+            case 6:
+              _context3.prev = 6;
+              _context3.t0 = _context3["catch"](0);
+              console.log('ERROR in DELETE Article thunk:', _context3.t0);
+
+            case 9:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3, null, [[0, 6]]);
+    }));
+
+    return function (_x3) {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+};
 function articlesReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
@@ -1339,9 +1416,12 @@ function articlesReducer() {
       return action.articles;
 
     case ADD_ARTICLE:
-      return _objectSpread({
-        article: action.article
-      }, state);
+      return [action.article].concat(_toConsumableArray(state));
+
+    case DELETE_ARTICLE:
+      return state.filter(function (article) {
+        return article.id !== action.article.id;
+      });
 
     default:
       return state;
@@ -1354,7 +1434,7 @@ function articlesReducer() {
 /*!*******************************!*\
   !*** ./client/store/index.js ***!
   \*******************************/
-/*! exports provided: default, me, auth, logout, getArticles, addArticle, fetchArticlesThunk, addArticleThunk, getSingleArticle, fetchSingleArticleThunk */
+/*! exports provided: default, me, auth, logout, getArticles, addArticle, deleteArticle, fetchArticlesThunk, addArticleThunk, removeArticleThunk, getSingleArticle, fetchSingleArticleThunk */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1378,9 +1458,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "addArticle", function() { return _articles__WEBPACK_IMPORTED_MODULE_5__["addArticle"]; });
 
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "deleteArticle", function() { return _articles__WEBPACK_IMPORTED_MODULE_5__["deleteArticle"]; });
+
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "fetchArticlesThunk", function() { return _articles__WEBPACK_IMPORTED_MODULE_5__["fetchArticlesThunk"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "addArticleThunk", function() { return _articles__WEBPACK_IMPORTED_MODULE_5__["addArticleThunk"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "removeArticleThunk", function() { return _articles__WEBPACK_IMPORTED_MODULE_5__["removeArticleThunk"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getSingleArticle", function() { return _singleArticle__WEBPACK_IMPORTED_MODULE_6__["getSingleArticle"]; });
 
