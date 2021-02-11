@@ -18,7 +18,7 @@ myLocalDB.sync(remotedb, {
   retry: true
 })
 //const url = 'https://en.wikipedia.org/wiki/Groundhog'
-const puppeteerArticle = async url => {
+const puppeteerArticle = async (url, tag) => {
   const browser = await puppeteer.launch({args: ['--no-sandbox']})
   const page = await browser.newPage()
   await page.goto(url, {waitUntil: 'networkidle2'})
@@ -29,7 +29,8 @@ const puppeteerArticle = async url => {
   const articleObj = {
     title: title,
     url: url,
-    body: body
+    body: body,
+    tag: tag
   }
   return articleObj
 }
@@ -62,11 +63,14 @@ router.get('/:docId', async (req, res, next) => {
 })
 
 //add article to cloudant from puppeteer-from addArticle thunk
+//tag doesnt come in from Chrome yet
 router.post('/', async (req, res, next) => {
   try {
     const {url} = req.body
-    console.log('post route-url passed', url)
-    const myOutputFromPuppeteer = await puppeteerArticle(url)
+    let tag = req.body.tag
+    if (!tag.length || tag === undefined || tag === null) tag = 'Misc'
+    console.log('post route-url tag passed', url, tag)
+    const myOutputFromPuppeteer = await puppeteerArticle(url, tag)
     await cloudant.use('pinit-test-linh').insert(myOutputFromPuppeteer) //cloudant
     myLocalDB.sync(remotedb)
     res.send(myOutputFromPuppeteer)

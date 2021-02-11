@@ -24,8 +24,8 @@ const NavBar = () => {
             <a href="Log Out" onClick={logout}>
               Logout
             </a> */}
-        {/* <NavLink to="/addArticle"> Add Article </NavLink>
-        <NavLink to="/articles"> All Article </NavLink> */}
+        <NavLink to="/addArticle"> Add Article </NavLink>
+        <NavLink to="/articles"> All Article </NavLink>
         {/* </div>
         ) : (
           <div>

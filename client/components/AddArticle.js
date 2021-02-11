@@ -7,7 +7,7 @@ class AddArticle extends React.Component {
     super(props)
     this.state = {
       url: '',
-      tag: 'misc'
+      tag: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
