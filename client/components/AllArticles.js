@@ -1,39 +1,55 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {fetchArticlesThunk} from '../store/articles'
+import {fetchArticlesThunk, removeArticleThunk} from '../store/articles'
 
 export class AllArticles extends React.Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
+    this.state = {
+      clicked: false
+    }
+    this.handleClick = this.handleClick.bind(this)
   }
   componentDidMount() {
     this.props.loadArticles()
   }
+  handleClick() {
+    this.setState({
+      clicked: true
+    })
+  }
 
   render() {
-    const articles = this.props.articles.rows || []
-    console.log('all articles', articles)
+    const articles = this.props.articles || []
+    console.log('ALL ARTICLES: ', articles)
     console.log('article1', articles[0])
 
-    return (
+    return articles ? (
       <div>
-        <div>
-          {articles.map(article => {
-            return (
-              <div key={article.id}>
-                <h2>
-                  <Link to={`/articles/${article.id}`}>
-                    Title: {article.doc.title}
-                  </Link>
-                </h2>
-                <h2>{article.id}</h2>
+        {articles.map(article => {
+          return (
+            <div key={article.id}>
+              <h2>
+                <Link to={`/articles/${article.id}`}>
+                  Title: {article.doc.title}
+                </Link>
+              </h2>
+              <h2>{article.id}</h2>
+              <div className="column">
+                <button
+                  type="button"
+                  className="remove"
+                  onClick={() => this.props.removeArticle(article)}
+                >
+                  Remove
+                </button>
               </div>
-            )
-          })}
-        </div>
+            </div>
+          )
+        })}
       </div>
-    )
+    ) : null
   }
 }
 const mapState = state => {
@@ -43,7 +59,8 @@ const mapState = state => {
 }
 
 const mapDispatch = dispatch => ({
-  loadArticles: () => dispatch(fetchArticlesThunk())
+  loadArticles: () => dispatch(fetchArticlesThunk()),
+  removeArticle: article => dispatch(removeArticleThunk(article))
 })
 
 export default connect(mapState, mapDispatch)(AllArticles)

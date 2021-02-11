@@ -52,7 +52,7 @@ router.get('/:docId', async (req, res, next) => {
     const article = await myLocalDB.get(docId)
     res.send(article)
   } catch (error) {
-    console.log('Error in get aa articles api', error)
+    console.log('Error in get articles api', error)
     next(error)
   }
 })
@@ -68,6 +68,18 @@ router.post('/', async (req, res, next) => {
     res.send(myOutputFromPuppeteer)
   } catch (error) {
     console.log('Error in add article axios.post', error)
+    next(error)
+  }
+})
+
+router.delete('/:docId', async (req, res, next) => {
+  const docId = req.params.docId
+  try {
+    const article = await myLocalDB.get(docId)
+    myLocalDB.remove(article)
+    res.send(article)
+  } catch (error) {
+    console.log('Error in delete articles api', error)
     next(error)
   }
 })
