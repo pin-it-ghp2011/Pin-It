@@ -4,9 +4,10 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Redirect
+  Redirect,
+  NavLink
 } from 'react-router-dom'
-import PropTypes from 'prop-types'
+//import PropTypes from 'prop-types'
 // import {
 //   LogIn,
 //   SignUp,
@@ -15,18 +16,15 @@ import PropTypes from 'prop-types'
 //   AddArticle,
 //   AllArticles,
 // } from './components'
-
 import {
-  LogIn,
-  SignUp,
+  // LogIn,
+  // SignUp,
   Home,
   SingleArticle,
   AddArticle,
   AllArticles
 } from './components'
-
 import {me} from './store'
-
 /**
  * COMPONENT
  */
@@ -34,23 +32,22 @@ class Routes extends Component {
   // componentDidMount() {
   //   this.props.loadInitialData()
   // }
-
   render() {
     return (
       <Router>
+        <nav>
+          <NavLink to="/addArticle"> Add Article </NavLink>
+          <NavLink to="/articles"> All Article </NavLink>
+        </nav>
         <Switch>
           {/* Routes placed here are available to all visitors */}
           {/* <Route exact path="/login" component={LogIn} />
           <Route exact path="/signup" component={SignUp} /> */}
-
           {/* Routes placed here are only available after logging in */}
-
           <Route exact path="/" component={Home} />
           <Route exact path="/addArticle" component={AddArticle} />
-          <Route path="/articles" component={AllArticles} />
-
+          <Route exact path="/articles" component={AllArticles} />
           <Route path="/articles/:articleId" component={SingleArticle} />
-
           {/* Displays our Login component as a fallback */}
           <Redirect to="/" />
         </Switch>
@@ -58,7 +55,6 @@ class Routes extends Component {
     )
   }
 }
-
 /**
  * CONTAINER
  */
@@ -69,7 +65,6 @@ const mapState = state => {
     isLoggedIn: !!state.user.id
   }
 }
-
 const mapDispatch = dispatch => {
   return {
     loadInitialData() {
@@ -77,11 +72,9 @@ const mapDispatch = dispatch => {
     }
   }
 }
-
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
 export default connect(mapState, mapDispatch)(Routes)
-
 /**
  * PROP TYPES
  */

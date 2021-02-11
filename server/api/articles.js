@@ -4,21 +4,18 @@ require('dotenv').config()
 const PouchDB = require('pouchdb')
 const myLocalDB = new PouchDB('articles')
 const remotedb = new PouchDB(`${process.env.CLOUDANT_URL}/pinit-test-linh`)
-
 const Cloudant = require('@cloudant/cloudant')
-
 const cloudant = new Cloudant({
   url: process.env.CLOUDANT_URL,
   account: process.env.CLOUDANT_ACCOUNT,
   password: process.env.CLOUDANT_PASSWORD
 })
-
 myLocalDB.sync(remotedb, {
   live: true,
   retry: true
 })
 //const url = 'https://en.wikipedia.org/wiki/Groundhog'
-const puppeteerArticle = async (url, tag) => {
+const puppeteerArticle = async url => {
   const browser = await puppeteer.launch({args: ['--no-sandbox']})
   const page = await browser.newPage()
   await page.goto(url, {waitUntil: 'networkidle2'})
@@ -29,12 +26,10 @@ const puppeteerArticle = async (url, tag) => {
   const articleObj = {
     title: title,
     url: url,
-    body: body,
-    tag: tag
+    body: body
   }
   return articleObj
 }
-
 router.get('/', async (req, res, next) => {
   try {
     const allArticles = await myLocalDB.allDocs({
@@ -47,12 +42,9 @@ router.get('/', async (req, res, next) => {
     next(error)
   }
 })
-
 //get singleArticle from myLocalDB
-
 router.get('/:docId', async (req, res, next) => {
   const docId = req.params.docId
-
   try {
     const article = await myLocalDB.get(docId)
     res.send(article)
@@ -61,16 +53,12 @@ router.get('/:docId', async (req, res, next) => {
     next(error)
   }
 })
-
 //add article to cloudant from puppeteer-from addArticle thunk
-//tag doesnt come in from Chrome yet
 router.post('/', async (req, res, next) => {
   try {
     const {url} = req.body
-    let tag = req.body.tag
-    if (!tag.length || tag === undefined || tag === null) tag = 'Misc'
-    console.log('post route-url tag passed', url, tag)
-    const myOutputFromPuppeteer = await puppeteerArticle(url, tag)
+    console.log('post route-url passed', url)
+    const myOutputFromPuppeteer = await puppeteerArticle(url)
     await cloudant.use('pinit-test-linh').insert(myOutputFromPuppeteer) //cloudant
     myLocalDB.sync(remotedb)
     res.send(myOutputFromPuppeteer)
@@ -79,7 +67,6 @@ router.post('/', async (req, res, next) => {
     next(error)
   }
 })
-
 router.delete('/:docId', async (req, res, next) => {
   const docId = req.params.docId
   try {
@@ -91,5 +78,4 @@ router.delete('/:docId', async (req, res, next) => {
     next(error)
   }
 })
-
 module.exports = router
