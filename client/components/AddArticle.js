@@ -7,7 +7,7 @@ class AddArticle extends React.Component {
     super(props)
     this.state = {
       url: '',
-      tag: 'misc'
+      tag: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -25,7 +25,7 @@ class AddArticle extends React.Component {
     this.props.pinArticle(url, tag)
     this.setState({
       url: '',
-      tag: 'misc'
+      tag: ''
     })
   }
 
