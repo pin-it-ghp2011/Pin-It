@@ -6,7 +6,8 @@ class AddArticle extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      url: ''
+      url: '',
+      tag: 'misc'
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -19,11 +20,12 @@ class AddArticle extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    const {url} = this.state
-    console.log('in add article handle submit, url:', url)
-    this.props.pinArticle(url)
+    const {url, tag} = this.state
+    console.log('in add article handle submit, url, tag:', url, tag)
+    this.props.pinArticle(url, tag)
     this.setState({
-      url: ''
+      url: '',
+      tag: 'misc'
     })
   }
 
@@ -40,6 +42,19 @@ class AddArticle extends React.Component {
               onChange={this.handleChange}
               required
             />
+            <select
+              value={this.state.tag}
+              name="tag"
+              onChange={this.handleChange}
+            >
+              <option>Category:</option>
+              <option value="News">News</option>
+              <option value="Professional">Professional</option>
+              <option value="Home and Leisure">Home and Leisure</option>
+              <option value="Culture">Culture</option>
+              <option value="Sports">Sports</option>
+              <option defaultValue="Misc">Misc</option>
+            </select>
           </label>
           <input type="submit" />
         </form>
@@ -49,7 +64,7 @@ class AddArticle extends React.Component {
 }
 
 const mapDispatch = dispatch => ({
-  pinArticle: url => dispatch(addArticleThunk(url))
+  pinArticle: (url, tag) => dispatch(addArticleThunk(url, tag))
 })
 
 export default connect(null, mapDispatch)(AddArticle)

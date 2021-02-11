@@ -176,7 +176,8 @@ var AddArticle = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      url: ''
+      url: '',
+      tag: 'misc'
     };
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
@@ -192,11 +193,14 @@ var AddArticle = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(event) {
       event.preventDefault();
-      var url = this.state.url;
-      console.log('in add article handle submit, url:', url);
-      this.props.pinArticle(url);
+      var _this$state = this.state,
+          url = _this$state.url,
+          tag = _this$state.tag;
+      console.log('in add article handle submit, url, tag:', url, tag);
+      this.props.pinArticle(url, tag);
       this.setState({
-        url: ''
+        url: '',
+        tag: 'misc'
       });
     }
   }, {
@@ -212,7 +216,23 @@ var AddArticle = /*#__PURE__*/function (_React$Component) {
         value: this.state.url,
         onChange: this.handleChange,
         required: true
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        value: this.state.tag,
+        name: "tag",
+        onChange: this.handleChange
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", null, "Category:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "News"
+      }, "News"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "Professional"
+      }, "Professional"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "Home and Leisure"
+      }, "Home and Leisure"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "Culture"
+      }, "Culture"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "Sports"
+      }, "Sports"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        defaultValue: "Misc"
+      }, "Misc"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "submit"
       })));
     }
@@ -223,8 +243,8 @@ var AddArticle = /*#__PURE__*/function (_React$Component) {
 
 var mapDispatch = function mapDispatch(dispatch) {
   return {
-    pinArticle: function pinArticle(url) {
-      return dispatch(Object(_store_articles__WEBPACK_IMPORTED_MODULE_2__["addArticleThunk"])(url));
+    pinArticle: function pinArticle(url, tag) {
+      return dispatch(Object(_store_articles__WEBPACK_IMPORTED_MODULE_2__["addArticleThunk"])(url, tag));
     }
   };
 };
@@ -1278,10 +1298,11 @@ var getArticles = function getArticles(articles) {
   };
 }; //add an article by url on webpage
 
-var addArticle = function addArticle(url) {
+var addArticle = function addArticle(url, tag) {
   return {
     type: ADD_ARTICLE,
-    url: url
+    url: url,
+    tag: tag
   };
 }; //delete article by articleId
 
@@ -1330,27 +1351,28 @@ var fetchArticlesThunk = function fetchArticlesThunk() {
     };
   }();
 };
-var addArticleThunk = function addArticleThunk(url) {
+var addArticleThunk = function addArticleThunk(url, tag) {
   return /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(dispatch) {
-      var articleUrl, _yield$axios$post, data;
+      var urlAndTag, _yield$axios$post, data;
 
       return regeneratorRuntime.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
               _context2.prev = 0;
-              articleUrl = {
-                url: url
+              urlAndTag = {
+                url: url,
+                tag: tag
               };
-              console.log('IN ARTICLES THUNK', articleUrl);
+              console.log('IN ARTICLES THUNK:articles& tag', urlAndTag);
               _context2.next = 5;
-              return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/articles", articleUrl);
+              return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/articles", urlAndTag);
 
             case 5:
               _yield$axios$post = _context2.sent;
               data = _yield$axios$post.data;
-              console.log('add article thunk, after axios:data', data);
+              console.log('add article thunk, after axios:data', urlAndTag);
               dispatch(addArticle(data));
               _context2.next = 14;
               break;

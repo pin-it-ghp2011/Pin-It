@@ -11,9 +11,10 @@ export const getArticles = articles => ({
 })
 
 //add an article by url on webpage
-export const addArticle = url => ({
+export const addArticle = (url, tag) => ({
   type: ADD_ARTICLE,
-  url
+  url,
+  tag
 })
 
 //delete article by articleId
@@ -35,13 +36,13 @@ export const fetchArticlesThunk = () => {
   }
 }
 
-export const addArticleThunk = url => {
+export const addArticleThunk = (url, tag) => {
   return async dispatch => {
     try {
-      const articleUrl = {url: url}
-      console.log('IN ARTICLES THUNK', articleUrl)
-      const {data} = await axios.post(`/api/articles`, articleUrl)
-      console.log('add article thunk, after axios:data', data)
+      const urlAndTag = {url: url, tag: tag}
+      console.log('IN ARTICLES THUNK:articles& tag', urlAndTag)
+      const {data} = await axios.post(`/api/articles`, urlAndTag)
+      console.log('add article thunk, after axios:data', urlAndTag)
       dispatch(addArticle(data))
     } catch (error) {
       console.log('something is wrong in the addArticles thunk:', error)
