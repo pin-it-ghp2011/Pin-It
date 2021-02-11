@@ -5,7 +5,6 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import userReducer from './user'
 import articlesReducer from './articles'
 import singleArticleReducer from './singleArticle'
-
 const reducer = combineReducers({
   user: userReducer,
   articles: articlesReducer,
@@ -15,7 +14,6 @@ const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )
 const store = createStore(reducer, middleware)
-
 export default store
 export * from './user'
 export * from './articles'

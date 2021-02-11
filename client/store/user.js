@@ -1,23 +1,19 @@
 import axios from 'axios'
 import history from '../history'
-
 /**
  * ACTION TYPES
  */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
-
 /**
  * INITIAL STATE
  */
 const defaultUser = {}
-
 /**
  * ACTION CREATORS
  */
 const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
-
 /**
  * THUNK CREATORS
  */
@@ -29,7 +25,6 @@ export const me = () => async dispatch => {
     console.error(err)
   }
 }
-
 export const auth = (email, password, method) => async dispatch => {
   let res
   try {
@@ -37,7 +32,6 @@ export const auth = (email, password, method) => async dispatch => {
   } catch (authError) {
     return dispatch(getUser({error: authError}))
   }
-
   try {
     dispatch(getUser(res.data))
     history.push('/home')
@@ -45,7 +39,6 @@ export const auth = (email, password, method) => async dispatch => {
     console.error(dispatchOrHistoryErr)
   }
 }
-
 export const logout = () => async dispatch => {
   try {
     await axios.post('/auth/logout')
@@ -55,7 +48,6 @@ export const logout = () => async dispatch => {
     console.error(err)
   }
 }
-
 /**
  * REDUCER
  */

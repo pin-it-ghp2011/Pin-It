@@ -1,5 +1,4 @@
 import axios from 'axios'
-
 //action type
 const GET_ARTICLES = 'GET_ARTICLES'
 const ADD_ARTICLE = 'ADD_ARTICLE'
@@ -9,21 +8,17 @@ export const getArticles = articles => ({
   type: GET_ARTICLES,
   articles
 })
-
 //add an article by url on webpage
 export const addArticle = (url, tag) => ({
   type: ADD_ARTICLE,
   url,
   tag
 })
-
 //delete article by articleId
-
 export const deleteArticle = article => ({
   type: DELETE_ARTICLE,
   article
 })
-
 export const fetchArticlesThunk = () => {
   return async dispatch => {
     try {
@@ -35,7 +30,6 @@ export const fetchArticlesThunk = () => {
     }
   }
 }
-
 export const addArticleThunk = (url, tag) => {
   return async dispatch => {
     try {
@@ -49,7 +43,6 @@ export const addArticleThunk = (url, tag) => {
     }
   }
 }
-
 export const removeArticleThunk = article => {
   return async dispatch => {
     try {
@@ -60,7 +53,6 @@ export const removeArticleThunk = article => {
     }
   }
 }
-
 export default function articlesReducer(state = [], action) {
   switch (action.type) {
     case GET_ARTICLES:
