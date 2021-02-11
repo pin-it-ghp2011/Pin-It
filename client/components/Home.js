@@ -3,6 +3,7 @@ import Container from '@material-ui/core/Container'
 import {makeStyles} from '@material-ui/core/styles'
 import Carousel from 'react-material-ui-carousel'
 import {Paper} from '@material-ui/core'
+import Image from 'material-ui-image'
 
 const useStyles = makeStyles({
   body: {
@@ -56,7 +57,7 @@ const Home = () => {
 function Picture(props) {
   return (
     <Paper>
-      <img src={props.picture.image1} />
+      <Image src={props.picture.image1} cover={true} />
       <p>{props.picture.description}</p>
     </Paper>
   )
