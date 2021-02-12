@@ -5,7 +5,7 @@ import Routes from './routes'
 //temporary
 //import SignUp from './components/SignUp'
 //import LogIn from './components/Login'
-import NavBar from './components/NavBar'
+// import NavBar from './components/NavBar'
 //mport SingleArticle from './components/SingleArticle'
 //import firebase from '../config/firebaseConfig'
 
@@ -13,7 +13,7 @@ const App = () => {
   return (
     <div>
       {/* <AuthProvider> */}
-      <NavBar />
+      {/* <NavBar /> */}
 
       <Routes />
       {/* <SignUp />

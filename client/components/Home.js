@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 import CarouselComp from './CarouselComp'
+import {flexbox} from '@material-ui/system'
 
 const useStyles = makeStyles({
   body: {
@@ -21,7 +22,7 @@ const Home = () => {
     <div>
       <center>
         <Grid>
-          <Box className={classes.body} sx={{border: '1px dashed grey'}}>
+          <Box className={classes.body} justifyContent="flex-start">
             <Typography variant="h3">Welcome to Pin It!</Typography>
             <Typography variant="h6">
               It's the reader for all your offline needs.
