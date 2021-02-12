@@ -26,7 +26,9 @@ const puppeteerArticle = async url => {
   const articleObj = {
     title: title,
     url: url,
-    body: body
+    body: body,
+    dateAdded: new Date().toDateString(),
+    readingStatus: false
   }
   return articleObj
 }
