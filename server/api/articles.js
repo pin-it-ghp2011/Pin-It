@@ -26,7 +26,9 @@ const puppeteerArticle = async url => {
   const articleObj = {
     title: title,
     url: url,
-    body: body
+    body: body,
+    dateAdded: new Date().toDateString(),
+    readingStatus: false
   }
   return articleObj
 }
@@ -53,13 +55,15 @@ router.get('/:docId', async (req, res, next) => {
     next(error)
   }
 })
+
 //add article to cloudant from puppeteer-from addArticle thunk
 router.post('/', async (req, res, next) => {
   try {
-    const {url} = req.body
-    console.log('post route-url passed', url)
+    const {url, tag} = req.body
+    console.log('post route-url passed', url, tag)
     const myOutputFromPuppeteer = await puppeteerArticle(url)
-    await cloudant.use('pinit-test-linh').insert(myOutputFromPuppeteer) //cloudant
+    const newArticle = {...myOutputFromPuppeteer, tag}
+    await cloudant.use('pinit-test-linh').insert(newArticle) //cloudant
     myLocalDB.sync(remotedb)
     res.send(myOutputFromPuppeteer)
   } catch (error) {
@@ -67,6 +71,7 @@ router.post('/', async (req, res, next) => {
     next(error)
   }
 })
+
 router.delete('/:docId', async (req, res, next) => {
   const docId = req.params.docId
   try {
