@@ -3,7 +3,7 @@ import {NavLink} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
+import IconButton from '@material-ui/core/IconButton'
 import {makeStyles} from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import useScrollTrigger from '@material-ui/core/useScrollTrigger'
@@ -68,13 +68,13 @@ export default function NavHeader(props) {
       <AppBar color="primary">
         <Toolbar>
           <NavLink to="/">
-            <Typography variant="h6">Home</Typography>
-          </NavLink>
-          <NavLink to="/addArticle">
-            <Typography variant="h6">Add Article</Typography>
+            <IconButton>Home </IconButton>
           </NavLink>
           <NavLink to="/articles">
-            <Typography variant="h6">AllArticles</Typography>
+            <IconButton>All Articles </IconButton>
+          </NavLink>
+          <NavLink to="/addArticle">
+            <IconButton>Add Article </IconButton>
           </NavLink>
         </Toolbar>
       </AppBar>
