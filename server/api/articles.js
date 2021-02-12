@@ -4,15 +4,12 @@ require('dotenv').config()
 const PouchDB = require('pouchdb')
 const myLocalDB = new PouchDB('articles')
 const remotedb = new PouchDB(`${process.env.CLOUDANT_URL}/pinit-test-linh`)
-
 const Cloudant = require('@cloudant/cloudant')
-
 const cloudant = new Cloudant({
   url: process.env.CLOUDANT_URL,
   account: process.env.CLOUDANT_ACCOUNT,
   password: process.env.CLOUDANT_PASSWORD
 })
-
 myLocalDB.sync(remotedb, {
   live: true,
   retry: true
@@ -33,7 +30,6 @@ const puppeteerArticle = async url => {
   }
   return articleObj
 }
-
 router.get('/', async (req, res, next) => {
   try {
     const allArticles = await myLocalDB.allDocs({
@@ -46,12 +42,9 @@ router.get('/', async (req, res, next) => {
     next(error)
   }
 })
-
 //get singleArticle from myLocalDB
-
 router.get('/:docId', async (req, res, next) => {
   const docId = req.params.docId
-
   try {
     const article = await myLocalDB.get(docId)
     res.send(article)
@@ -60,7 +53,6 @@ router.get('/:docId', async (req, res, next) => {
     next(error)
   }
 })
-
 //add article to cloudant from puppeteer-from addArticle thunk
 router.post('/', async (req, res, next) => {
   try {
@@ -75,7 +67,6 @@ router.post('/', async (req, res, next) => {
     next(error)
   }
 })
-
 router.delete('/:docId', async (req, res, next) => {
   const docId = req.params.docId
   try {
@@ -87,5 +78,4 @@ router.delete('/:docId', async (req, res, next) => {
     next(error)
   }
 })
-
 module.exports = router

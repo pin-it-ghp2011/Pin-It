@@ -10,20 +10,17 @@ window.addEventListener('DOMContentLoaded', () => {
       try {
         let currentUrl = tabs[0].url
         alert(currentUrl)
-        let response = await fetch(
-          `https://pin-it-reader.herokuapp.com/api/articles/`,
-          {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-              Accept:
-                'application/json, application/xml, text/plain, text/html, *.*',
-              'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
-            },
-            body: `url=${currentUrl}`
-          }
-        )
-        alert(response, `this is the response!`)
+        await fetch(`https://pin-it-reader.herokuapp.com/api/articles/`, {
+          method: 'POST',
+          mode: 'cors',
+          headers: {
+            Accept:
+              'application/json, application/xml, text/plain, text/html, *.*',
+            'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+          },
+          body: `url=${currentUrl}`
+        })
+        alert(`add article successfully!`)
       } catch (error) {
         alert(error, 'banana')
       }

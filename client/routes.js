@@ -16,7 +16,6 @@ import {
 //   AddArticle,
 //   AllArticles,
 // } from './components'
-
 import {
   // LogIn,
   // SignUp,
@@ -25,9 +24,7 @@ import {
   AddArticle,
   AllArticles
 } from './components'
-
 import {me} from './store'
-
 /**
  * COMPONENT
  */
@@ -35,7 +32,6 @@ class Routes extends Component {
   // componentDidMount() {
   //   this.props.loadInitialData()
   // }
-
   render() {
     return (
       <Router>
@@ -43,20 +39,15 @@ class Routes extends Component {
           <NavLink to="/addArticle"> Add Article </NavLink>
           <NavLink to="/articles"> All Article </NavLink>
         </nav>
-
         <Switch>
           {/* Routes placed here are available to all visitors */}
           {/* <Route exact path="/login" component={LogIn} />
           <Route exact path="/signup" component={SignUp} /> */}
-
           {/* Routes placed here are only available after logging in */}
-
           <Route exact path="/" component={Home} />
           <Route exact path="/addArticle" component={AddArticle} />
           <Route exact path="/articles" component={AllArticles} />
-
           <Route path="/articles/:articleId" component={SingleArticle} />
-
           {/* Displays our Login component as a fallback */}
           <Redirect to="/" />
         </Switch>
@@ -64,7 +55,6 @@ class Routes extends Component {
     )
   }
 }
-
 /**
  * CONTAINER
  */
@@ -75,7 +65,6 @@ const mapState = state => {
     isLoggedIn: !!state.user.id
   }
 }
-
 const mapDispatch = dispatch => {
   return {
     loadInitialData() {
@@ -83,11 +72,9 @@ const mapDispatch = dispatch => {
     }
   }
 }
-
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
 export default connect(mapState, mapDispatch)(Routes)
-
 /**
  * PROP TYPES
  */
