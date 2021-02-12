@@ -22,14 +22,22 @@ const puppeteerArticle = async url => {
   let title = await page.title()
   await page.waitForSelector('body')
   const body = await page.evaluate(() => document.body.innerHTML)
-  await browser.close()
+  const imageNameFromTitle = title
+    .replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/\s]/gi, '')
+    .toLowerCase()
+    .concat('.png')
+  await page.screenshot({path: `public/${imageNameFromTitle}`})
+
   const articleObj = {
     title: title,
     url: url,
     body: body,
+    screenshotName: imageNameFromTitle,
     dateAdded: new Date().toDateString(),
     readingStatus: false
   }
+
+  await browser.close()
   return articleObj
 }
 router.get('/', async (req, res, next) => {
