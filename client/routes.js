@@ -1,5 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+
 import {
   BrowserRouter as Router,
   Route,
@@ -16,6 +19,7 @@ import {
 //   AddArticle,
 //   AllArticles,
 // } from './components'
+import NavHeader from './components/NavHeader'
 import {
   // LogIn,
   // SignUp,
@@ -35,10 +39,11 @@ class Routes extends Component {
   render() {
     return (
       <Router>
-        <nav>
+        <NavHeader />
+        {/* <NavLink to="/"> Home </NavLink>
           <NavLink to="/addArticle"> Add Article </NavLink>
-          <NavLink to="/articles"> All Article </NavLink>
-        </nav>
+          <NavLink to="/articles"> All Articles </NavLink> */}
+
         <Switch>
           {/* Routes placed here are available to all visitors */}
           {/* <Route exact path="/login" component={LogIn} />
