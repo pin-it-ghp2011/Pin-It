@@ -1,6 +1,18 @@
 import React from 'react'
 import Routes from './routes'
 //import {AuthProvider} from './components/auth/AuthContext'
+import {createMuiTheme, ThemeProvider, Button} from '@material-ui/core'
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#FF999C'
+    },
+    secondary: {
+      main: '#E02932'
+    }
+  }
+})
 
 //temporary
 //import SignUp from './components/SignUp'
@@ -12,16 +24,18 @@ import Routes from './routes'
 const App = () => {
   return (
     <div>
-      {/* <AuthProvider> */}
-      {/* <NavBar /> */}
+      <ThemeProvider theme={theme}>
+        {/* <AuthProvider> */}
+        {/* <NavBar /> */}
 
-      <Routes />
-      {/* <SignUp />
+        <Routes />
+        {/* <SignUp />
         <LogIn /> */}
-      {/* <AddArticle />
+        {/* <AddArticle />
       <AllArticles /> */}
-      {/* <SingleArticle /> */}
-      {/* </AuthProvider> */}
+        {/* <SingleArticle /> */}
+        {/* </AuthProvider> */}
+      </ThemeProvider>
     </div>
   )
 }

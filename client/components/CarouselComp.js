@@ -38,6 +38,7 @@ const CarouselComp = () => {
     </Carousel>
   )
 }
+
 function Picture(props) {
   return (
     <Paper>

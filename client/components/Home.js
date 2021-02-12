@@ -9,9 +9,9 @@ const useStyles = makeStyles({
   body: {
     position: 'absolute',
     left: '75%',
-    top: '75%',
-    transform: 'translate(-50%, -50%)',
-    padding: 2
+    top: '50%',
+    transform: 'translate(-50%, -45%)',
+    padding: '0 30px'
   }
 })
 

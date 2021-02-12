@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
+import IconButton from '@material-ui/core/IconButton'
 import {makeStyles} from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import useScrollTrigger from '@material-ui/core/useScrollTrigger'
@@ -12,7 +13,6 @@ import Container from '@material-ui/core/Container'
 import Fab from '@material-ui/core/Fab'
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp'
 import Zoom from '@material-ui/core/Zoom'
-
 const useStyles = makeStyles(theme => ({
   root: {
     position: 'fixed',
@@ -20,7 +20,6 @@ const useStyles = makeStyles(theme => ({
     right: theme.spacing(2)
   }
 }))
-
 function ScrollTop(props) {
   const {children, window} = props
   const classes = useStyles()
@@ -32,17 +31,14 @@ function ScrollTop(props) {
     disableHysteresis: true,
     threshold: 100
   })
-
   const handleClick = event => {
     const anchor = (event.target.ownerDocument || document).querySelector(
       '#back-to-top-anchor'
     )
-
     if (anchor) {
       anchor.scrollIntoView({behavior: 'smooth', block: 'center'})
     }
   }
-
   return (
     <Zoom in={trigger}>
       <div onClick={handleClick} role="presentation" className={classes.root}>
@@ -51,7 +47,6 @@ function ScrollTop(props) {
     </Zoom>
   )
 }
-
 ScrollTop.propTypes = {
   children: PropTypes.element.isRequired,
   /**
@@ -60,21 +55,24 @@ ScrollTop.propTypes = {
    */
   window: PropTypes.func
 }
-
 export default function NavHeader(props) {
   return (
     <React.Fragment>
       <CssBaseline />
       <AppBar color="primary">
         <Toolbar>
+          {/* <img src="https://photos.app.goo.gl/LhiVf34L2UsAPL8f8" /> */}
           <NavLink to="/">
-            <Typography variant="h6">Home</Typography>
-          </NavLink>
-          <NavLink to="/addArticle">
-            <Typography variant="h6">Add Article</Typography>
+            <IconButton>Home </IconButton>
+            {/* <Typography variant="h6">Home</Typography> */}
           </NavLink>
           <NavLink to="/articles">
-            <Typography variant="h6">AllArticles</Typography>
+            {/* <Typography variant="h6">AllArticles</Typography> */}
+            <IconButton>All Articles </IconButton>
+          </NavLink>
+          <NavLink to="/addArticle">
+            <IconButton>Add Article </IconButton>
+            {/* <Typography variant="h6">Add Article</Typography> */}
           </NavLink>
         </Toolbar>
       </AppBar>
