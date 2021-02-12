@@ -4,14 +4,14 @@ import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 import CarouselComp from './CarouselComp'
-import {flexbox} from '@material-ui/system'
 
 const useStyles = makeStyles({
   body: {
     position: 'absolute',
-    left: '50%',
-    top: '50%',
-    transform: 'translate(-50%, -50%)'
+    left: '75%',
+    top: '75%',
+    transform: 'translate(-50%, -50%)',
+    padding: 2
   }
 })
 
