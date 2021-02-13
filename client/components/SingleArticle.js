@@ -1,6 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchSingleArticleThunk} from '../store/singleArticle'
+import {
+  fetchSingleArticleThunk,
+  updateArticleThunk
+} from '../store/singleArticle'
+
 class SingleArticle extends React.Component {
   componentDidMount() {
     console.log(`the beginning of componentdidmount single article`)
@@ -10,11 +14,22 @@ class SingleArticle extends React.Component {
   }
   render() {
     const body = this.props.article ? this.props.article.body : null
-    const title = this.props.article ? this.props.article.title : null
-    console.log('SINGLE ARTICLE PROPS: ', this.props)
+    // const title = this.props.article ? this.props.article.title : null
+    const articleId = this.props.article ? this.props.article._id : null
+    const readingStatus = this.props.article
+      ? this.props.article.readingStatus
+      : null
+    console.log('in SINGLE ARTICLE PROPS: ', readingStatus)
     return (
       <div>
-        <h1>{title}</h1>
+        {/* <h1>{title}</h1> */}
+        <button
+          type="button"
+          id="update"
+          onClick={() => this.props.updateReadingStatus(articleId)}
+        >
+          {readingStatus ? <> Done Reading </> : <> Unread </>}
+        </button>
         <div>
           {this.props.article ? (
             <div dangerouslySetInnerHTML={{__html: body}} />
@@ -24,18 +39,14 @@ class SingleArticle extends React.Component {
     )
   }
 }
-// const Article = (props) => {
-//   console.log('Article in SingleArticle props', props.content)
-//   return props.content && props.content.length ? (
-//     <div dangerouslySetInnerHTML={{__html: props.content}} />
-//   ) : null
-// }
+
 const mapState = state => {
   return {
     article: state.singleArticle
   }
 }
 const mapDispatch = dispatch => ({
-  loadSingleArticle: articleId => dispatch(fetchSingleArticleThunk(articleId))
+  loadSingleArticle: articleId => dispatch(fetchSingleArticleThunk(articleId)),
+  updateReadingStatus: articleId => dispatch(updateArticleThunk(articleId))
 })
 export default connect(mapState, mapDispatch)(SingleArticle)
