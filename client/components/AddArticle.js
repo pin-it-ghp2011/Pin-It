@@ -25,7 +25,7 @@ class AddArticle extends React.Component {
     this.props.pinArticle(url, tag)
     this.setState({
       url: '',
-      tag: 'misc'
+      tag: ''
     })
   }
 

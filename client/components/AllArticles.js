@@ -34,7 +34,7 @@ export class AllArticles extends React.Component {
 
     return articles ? (
       <div>
-        <Grid container spacing={0} style={{padding: 2}}>
+        <Grid container spacing={3} style={{padding: 2}}>
           {articles.map(article => {
             return (
               <div key={article.id}>

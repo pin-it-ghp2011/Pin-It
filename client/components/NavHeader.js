@@ -14,9 +14,16 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp'
 import Zoom from '@material-ui/core/Zoom'
 const useStyles = makeStyles(theme => ({
   root: {
-    position: 'fixed',
+    position: 'relative',
     bottom: theme.spacing(2),
-    right: theme.spacing(2)
+    right: theme.spacing(2),
+    color: theme.primary
+  },
+  logo: {
+    maxWidth: 160,
+    borderRadius: '25%',
+    padding: 10,
+    opacity: '70%' //adjust after- color pallete is set....
   }
 }))
 function ScrollTop(props) {
@@ -55,11 +62,13 @@ ScrollTop.propTypes = {
   window: PropTypes.func
 }
 export default function NavHeader(props) {
+  const classes = useStyles()
   return (
     <React.Fragment>
       <CssBaseline />
-      <AppBar color="primary">
+      <AppBar color="primary" mx="auto">
         <Toolbar>
+          <img src="pinitLogo.png" alt="logo" className={classes.logo} />
           <NavLink to="/">
             <IconButton>Home </IconButton>
           </NavLink>

@@ -5,16 +5,17 @@ import Image from 'material-ui-image'
 import {makeStyles} from '@material-ui/core/styles'
 
 const useStyles = makeStyles({
-  body: {
-    width: '50%',
-    height: '50%'
-  }
+  body: {}
 })
 
 const CarouselComp = () => {
   const classes = useStyles()
 
   let pictures = [
+    {
+      image1:
+        'https://images.unsplash.com/photo-1611159063981-b8c8c4301869?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=634&q=80'
+    },
     {
       image1:
         'https://images.unsplash.com/photo-1541613569553-332a2574a508?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80%27'
@@ -26,14 +27,6 @@ const CarouselComp = () => {
     {
       image1:
         'https://images.unsplash.com/photo-1598068644062-d487028bea47?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=375&q=80'
-    },
-    {
-      image1:
-        'https://images.unsplash.com/photo-1611159063981-b8c8c4301869?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=634&q=80'
-    },
-    {
-      image1:
-        'https://images.unsplash.com/photo-1484229449629-0b35883aaeed?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=750&q=80'
     }
   ]
   return (
@@ -42,6 +35,7 @@ const CarouselComp = () => {
     </Carousel>
   )
 }
+
 function Picture(props) {
   return (
     <Paper>
