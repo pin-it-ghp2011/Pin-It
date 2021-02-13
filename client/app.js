@@ -5,11 +5,17 @@ import {createMuiTheme, ThemeProvider, Button} from '@material-ui/core'
 
 const theme = createMuiTheme({
   palette: {
+    //menu
     primary: {
-      main: '#FF999C'
+      main: '#10567E'
     },
+    //background
     secondary: {
-      main: '#E02932'
+      main: '#EFE1D1',
+      contrastText: '#FF999C'
+    },
+    text: {
+      main: '#FF999C'
     }
   }
 })

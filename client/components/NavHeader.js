@@ -3,10 +3,6 @@ import {NavLink} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
-<<<<<<< HEAD
-import Typography from '@material-ui/core/Typography'
-=======
->>>>>>> c4b270af2d9a1d6669824c7d9328c7d754a0d230
 import IconButton from '@material-ui/core/IconButton'
 import {makeStyles} from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -18,9 +14,16 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp'
 import Zoom from '@material-ui/core/Zoom'
 const useStyles = makeStyles(theme => ({
   root: {
-    position: 'fixed',
+    position: 'relative',
     bottom: theme.spacing(2),
-    right: theme.spacing(2)
+    right: theme.spacing(2),
+    color: theme.primary
+  },
+  logo: {
+    maxWidth: 160,
+    borderRadius: '25%',
+    padding: 10,
+    opacity: '70%' //adjust after- color pallete is set....
   }
 }))
 function ScrollTop(props) {
@@ -59,31 +62,21 @@ ScrollTop.propTypes = {
   window: PropTypes.func
 }
 export default function NavHeader(props) {
+  const classes = useStyles()
   return (
     <React.Fragment>
       <CssBaseline />
-      <AppBar color="primary">
+      <AppBar color="primary" mx="auto">
         <Toolbar>
-          {/* <img src="https://photos.app.goo.gl/LhiVf34L2UsAPL8f8" /> */}
+          <img src="pinitLogo.png" alt="logo" className={classes.logo} />
           <NavLink to="/">
             <IconButton>Home </IconButton>
-<<<<<<< HEAD
-            {/* <Typography variant="h6">Home</Typography> */}
           </NavLink>
           <NavLink to="/articles">
-            {/* <Typography variant="h6">AllArticles</Typography> */}
-=======
-          </NavLink>
-          <NavLink to="/articles">
->>>>>>> c4b270af2d9a1d6669824c7d9328c7d754a0d230
             <IconButton>All Articles </IconButton>
           </NavLink>
           <NavLink to="/addArticle">
             <IconButton>Add Article </IconButton>
-<<<<<<< HEAD
-            {/* <Typography variant="h6">Add Article</Typography> */}
-=======
->>>>>>> c4b270af2d9a1d6669824c7d9328c7d754a0d230
           </NavLink>
         </Toolbar>
       </AppBar>

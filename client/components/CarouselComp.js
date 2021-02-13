@@ -5,10 +5,7 @@ import Image from 'material-ui-image'
 import {makeStyles} from '@material-ui/core/styles'
 
 const useStyles = makeStyles({
-  body: {
-    width: '50%',
-    height: '50%'
-  }
+  body: {}
 })
 
 const CarouselComp = () => {
