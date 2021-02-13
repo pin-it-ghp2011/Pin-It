@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     color: theme.primary
   },
   logo: {
-    maxWidth: 160,
+    maxWidth: 120,
     borderRadius: '25%',
     padding: 10,
     opacity: '70%' //adjust after- color pallete is set....
