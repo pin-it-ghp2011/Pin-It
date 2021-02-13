@@ -1,5 +1,4 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {fetchArticlesThunk, removeArticleThunk} from '../store/articles'
 import Grid from '@material-ui/core/Grid'
@@ -34,22 +33,38 @@ export class AllArticles extends React.Component {
 
     return articles ? (
       <div>
-        <Grid container spacing={0} style={{padding: 2}}>
+        <Grid container padding={10}>
           {articles.map(article => {
             return (
               <div key={article.id}>
-                <Grid item xs={10} sm={6} lg={4} xl={3}>
-                  <Card>
+                <Grid item style={{display: 'flex', padding: 10}}>
+                  <Card
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      flexDirection: 'column',
+                      height: 500,
+                      width: 500
+                    }}
+                  >
                     <CardMedia
-                      style={{height: 0, paddingTop: '56.25%'}}
+                      style={{height: 0, paddingTop: '56.25%', flex: 2}}
                       image={article.doc.screenshotName}
                     />
                     <CardContent>
                       <Typography gutterBottom variant="h6">
                         {article.doc.title}
                       </Typography>
+                      <Typography gutterBottom variant="p">
+                        Category : {article.doc.tag}
+                      </Typography>
                     </CardContent>
-                    <CardActions>
+                    <CardActions
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-between'
+                      }}
+                    >
                       <Button
                         size="small"
                         color="primary"
