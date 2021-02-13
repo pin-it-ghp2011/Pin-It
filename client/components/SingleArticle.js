@@ -24,12 +24,7 @@ class SingleArticle extends React.Component {
     )
   }
 }
-// const Article = (props) => {
-//   console.log('Article in SingleArticle props', props.content)
-//   return props.content && props.content.length ? (
-//     <div dangerouslySetInnerHTML={{__html: props.content}} />
-//   ) : null
-// }
+
 const mapState = state => {
   return {
     article: state.singleArticle

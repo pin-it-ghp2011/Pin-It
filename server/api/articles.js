@@ -91,4 +91,27 @@ router.delete('/:docId', async (req, res, next) => {
     next(error)
   }
 })
+
+router.put('/:docId', async (req, res, next) => {
+  const docId = req.params.docId
+  try {
+    const article = await myLocalDB.get(docId)
+    const newReadingStatus = !article.readingStatus
+    myLocalDB.put({
+      _id: article._id,
+      _rev: article._rev,
+      title: article.title,
+      url: article.url,
+      body: article.body,
+      tag: article.tag,
+      screenshotName: article.screenshotName,
+      dateAdded: article.dateAdded,
+      readingStatus: newReadingStatus
+    })
+    res.send(article)
+  } catch (error) {
+    console.log('Error in delete articles api', error)
+    next(error)
+  }
+})
 module.exports = router
