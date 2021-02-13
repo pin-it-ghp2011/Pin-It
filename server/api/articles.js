@@ -92,6 +92,7 @@ router.delete('/:docId', async (req, res, next) => {
   }
 })
 
+//update readingStatus
 router.put('/:docId', async (req, res, next) => {
   const docId = req.params.docId
   try {

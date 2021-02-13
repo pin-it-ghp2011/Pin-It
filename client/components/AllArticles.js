@@ -55,7 +55,7 @@ export class AllArticles extends React.Component {
                         color="primary"
                         href={`/articles/${article.id}`}
                       >
-                        Read
+                        Detail
                       </Button>
                       <Button
                         size="small"
