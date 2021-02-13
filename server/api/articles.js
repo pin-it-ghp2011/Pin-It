@@ -109,6 +109,7 @@ router.put('/:docId', async (req, res, next) => {
       dateAdded: article.dateAdded,
       readingStatus: newReadingStatus
     })
+    console.log('IN API PUT: ', article.readingStatus)
     res.send(article)
   } catch (error) {
     console.log('Error in delete articles api', error)

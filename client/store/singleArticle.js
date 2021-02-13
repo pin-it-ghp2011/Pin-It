@@ -31,10 +31,9 @@ export const fetchSingleArticleThunk = articleId => {
 export const updateArticleThunk = articleId => {
   return async dispatch => {
     try {
-      await axios.put(`/api/articles/${articleId}`)
-      const {newArticle} = await axios.get(`/api/articles/${articleId}`)
-      //const newReadingStatus = newArticle.readingStatus
-      dispatch(updateArticle(newArticle))
+      const {data} = await axios.put(`/api/articles/${articleId}`)
+      console.log('IN UPDATE THUNK: ', data)
+      dispatch(updateArticle(data))
     } catch (error) {
       console.log('ERROR in UPDATE Article thunk:', error)
     }
@@ -47,7 +46,7 @@ export default function singleArticleReducer(state = {}, action) {
     case GET_SINGLE_ARTICLE:
       return action.article
     case UPDATE_ARTICLE:
-      return {...state, readingStatus: action.newArticle.readingStatus}
+      return action.newArticle
     default:
       return state
   }

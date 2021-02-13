@@ -19,7 +19,7 @@ class SingleArticle extends React.Component {
     const readingStatus = this.props.article
       ? this.props.article.readingStatus
       : null
-    console.log('SINGLE ARTICLE PROPS: ', this.props)
+    console.log('in SINGLE ARTICLE PROPS: ', readingStatus)
     return (
       <div>
         {/* <h1>{title}</h1> */}
@@ -28,7 +28,7 @@ class SingleArticle extends React.Component {
           id="update"
           onClick={() => this.props.updateReadingStatus(articleId)}
         >
-          {readingStatus ? 'Done Reading' : 'Unread'}
+          {readingStatus ? <> Done Reading </> : <> Unread </>}
         </button>
         <div>
           {this.props.article ? (
