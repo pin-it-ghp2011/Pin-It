@@ -9,7 +9,6 @@ window.addEventListener('DOMContentLoaded', () => {
     ) {
       try {
         let currentUrl = tabs[0].url
-        alert(currentUrl)
         await fetch(`https://pin-it-reader.herokuapp.com/api/articles/`, {
           method: 'POST',
           mode: 'cors',
