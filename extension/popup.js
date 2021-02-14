@@ -22,7 +22,7 @@ window.addEventListener('DOMContentLoaded', () => {
         })
         alert(`Article saved successfully!`)
       } catch (error) {
-        alert(error, 'banana')
+        alert(error, 'Hmmm- try again...')
       }
     })
   })

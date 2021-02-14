@@ -22,6 +22,9 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 100,
     borderRadius: '25%',
     padding: 10
+  },
+  pushIconRight: {
+    flexGrow: 1
   }
 }))
 function ScrollTop(props) {
@@ -65,15 +68,15 @@ export default function NavHeader(props) {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar color="primary" mx="auto">
-        <Toolbar>
+        <Toolbar className={classes.bar}>
           <NavLink to="/">
             <IconButton>Home </IconButton>
           </NavLink>
           <NavLink to="/articles">
             <IconButton>All Articles </IconButton>
           </NavLink>
-          <NavLink to="/addArticle">
-            <IconButton className={classes.pushIcon}>Add Article </IconButton>
+          <NavLink to="/addArticle" className={classes.pushIconRight}>
+            <IconButton>Add Article </IconButton>
           </NavLink>
           <img src="pinitLogo.png" alt="logo" className={classes.logo} />
         </Toolbar>
