@@ -9,6 +9,7 @@ import clsx from 'clsx'
 
 const useStyles = makeStyles(theme => ({
   body: {
+    paddingTop: '20%', //added this
     position: 'absolute',
     left: '50%',
     top: '50%',
@@ -65,7 +66,8 @@ const Home = () => {
             flexDirection="row"
           >
             <CarouselComp />
-            <Typography variant="h3">Welcome to Pin It!</Typography>
+            <Typography variant="h3">Welcome to</Typography>
+            <Typography variant="h2">Pin It!</Typography>
             <Typography variant="overline">
               It's the reader for all your offline needs.
             </Typography>
