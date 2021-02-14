@@ -9,7 +9,7 @@ window.addEventListener('DOMContentLoaded', () => {
     ) {
       try {
         let currentUrl = tabs[0].url
-        alert(currentUrl)
+        alert(`Article pinned successfully!`)
         await fetch(`https://pin-it-reader.herokuapp.com/api/articles/`, {
           method: 'POST',
           mode: 'cors',
@@ -20,7 +20,6 @@ window.addEventListener('DOMContentLoaded', () => {
           },
           body: `url=${currentUrl}`
         })
-        alert(`Article saved successfully!`)
       } catch (error) {
         alert(error, 'Hmmm- try again...')
       }
