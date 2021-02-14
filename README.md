@@ -45,7 +45,7 @@ Pin It was built using [React](https://reactjs.org), [Node](https://nodejs.org/e
 ---- 
  ### Linh Vu
  [![GitHub](https://i.stack.imgur.com/tskMh.png) GitHub](https://github.com/Vuthuylinh) 
- [![Linkedin](https://i.stack.imgur.com/gVE0j.png) LinkedIn](www.linkedin.com/in/linh-vu-de)
+ [![Linkedin](https://i.stack.imgur.com/gVE0j.png) LinkedIn](https://www.linkedin.com/in/linh-vu-de/)
  ### Heather 
  [![GitHub](https://i.stack.imgur.com/tskMh.png) GitHub](https://github.com/heathernoto) 
  [![Linkedin](https://i.stack.imgur.com/gVE0j.png) LinkedIn](https://www.linkedin.com/)
