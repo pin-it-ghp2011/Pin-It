@@ -14,17 +14,16 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp'
 import Zoom from '@material-ui/core/Zoom'
 const useStyles = makeStyles(theme => ({
   root: {
-    position: 'relative',
+    position: 'absolute',
     bottom: theme.spacing(2),
-    right: theme.spacing(2),
-    color: theme.primary
+    right: theme.spacing(2)
   },
   logo: {
-    maxWidth: 160,
+    maxWidth: 100,
     borderRadius: '25%',
-    padding: 10,
-    opacity: '70%' //adjust after- color pallete is set....
-  }
+    padding: 10
+  },
+  toolbar: {}
 }))
 function ScrollTop(props) {
   const {children, window} = props
