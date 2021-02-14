@@ -31,6 +31,10 @@ const useStyles = makeStyles(theme => ({
   },
   pushIconRight: {
     flexGrow: 1
+  },
+  button: {
+    color: 'white',
+    fontSize: '1em'
   }
 }))
 
@@ -85,26 +89,28 @@ export default function NavHeader(props) {
       <AppBar color="primary" mx="auto">
         <Toolbar className={classes.bar}>
           <NavLink to="/">
-            <IconButton>
+            <IconButton className={classes.button}>
               <HomeIcon />
               Home{' '}
             </IconButton>
           </NavLink>
+
           <NavLink to="/articles">
-            <IconButton>
+            <IconButton className={classes.button}>
               <LibraryBooksRoundedIcon />
               Collection
             </IconButton>
           </NavLink>
+
           <NavLink to="/addArticle" className={classes.pushIconRight}>
-            <IconButton>
+            <IconButton className={classes.button}>
               <AddBoxIcon />
               Article
             </IconButton>
           </NavLink>
 
           <NavLink to="/">
-            <img src="pinitLogo.png" alt="logo" className={classes.logo} />
+            <img src="pinitLogo2.png" alt="logo" className={classes.logo} />
           </NavLink>
         </Toolbar>
       </AppBar>

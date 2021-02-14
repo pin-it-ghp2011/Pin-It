@@ -8,6 +8,7 @@ import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
+import {NavLink} from 'react-router-dom'
 
 export class AllArticles extends React.Component {
   componentDidMount() {
@@ -33,15 +34,18 @@ export class AllArticles extends React.Component {
                     }}
                   >
                     <CardMedia
-                      style={{height: 0, paddingTop: '56.25%', flex: 2}}
+                      style={{height: 0, paddingTop: '25%', flex: 2}}
                       image={article.doc.screenshotName}
                     />
                     <CardContent>
-                      <Typography gutterBottom variant="h6">
+                      <Typography gutterBottom variant="subtitle1">
                         {article.doc.title}
                       </Typography>
-                      <Typography gutterBottom variant="subtitle1">
-                        Category : {article.doc.tag}
+                      <Typography variant="subtitle2">
+                        Category: {article.doc.tag}
+                      </Typography>
+                      <Typography variant="subtitle2">
+                        Status: {article.doc.readingStatus ? 'Read' : 'Unread'}
                       </Typography>
                     </CardContent>
                     <CardActions
@@ -50,16 +54,14 @@ export class AllArticles extends React.Component {
                         justifyContent: 'space-between'
                       }}
                     >
+                      <NavLink to={`/articles/${article.id}`}>
+                        <Button size="small" color="secondary">
+                          Details
+                        </Button>
+                      </NavLink>
                       <Button
                         size="small"
-                        color="primary"
-                        href={`/articles/${article.id}`}
-                      >
-                        Details
-                      </Button>
-                      <Button
-                        size="small"
-                        color="primary"
+                        color="secondary"
                         onClick={() => this.props.removeArticle(article)}
                       >
                         Remove
