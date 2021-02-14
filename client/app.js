@@ -7,11 +7,11 @@ const theme = createMuiTheme({
   palette: {
     //menu
     primary: {
-      main: '#10567E'
+      main: '#e89194'
     },
     //background
     secondary: {
-      main: '#EFE1D1',
+      main: '#b46166',
       contrastText: '#FF999C'
     },
     text: {

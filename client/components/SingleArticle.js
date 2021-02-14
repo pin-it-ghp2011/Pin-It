@@ -4,12 +4,16 @@ import {
   fetchSingleArticleThunk,
   updateArticleThunk
 } from '../store/singleArticle'
+import Paper from '@material-ui/core/Paper'
+import Card from '@material-ui/core/Card'
+import Box from '@material-ui/core/Box'
+import Grid from '@material-ui/core/Grid'
+import Button from '@material-ui/core/Button'
 
 class SingleArticle extends React.Component {
   componentDidMount() {
-    console.log(`the beginning of componentdidmount single article`)
     const {articleId} = this.props.match.params
-    console.log('articleId', articleId)
+
     this.props.loadSingleArticle(articleId)
   }
   render() {
@@ -19,23 +23,37 @@ class SingleArticle extends React.Component {
     const readingStatus = this.props.article
       ? this.props.article.readingStatus
       : null
-    console.log('in SINGLE ARTICLE PROPS: ', readingStatus)
+
     return (
-      <div>
-        {/* <h1>{title}</h1> */}
-        <button
-          type="button"
-          id="update"
-          onClick={() => this.props.updateReadingStatus(articleId)}
+      <Grid
+        container
+        spacing={0}
+        direction="column"
+        style={{display: 'flex', alignContent: 'center'}}
+      >
+        <Box style={{display: 'flex'}}>
+          <Button
+            style={{margin: '0 auto'}}
+            size="small"
+            color="primary"
+            type="button"
+            id="update"
+            onClick={() => this.props.updateReadingStatus(articleId)}
+          >
+            {readingStatus ? <> Done Reading </> : <> Unread </>}
+          </Button>
+        </Box>
+        <Card
+          variant="outlined"
+          style={{maxWidth: 750, padding: 50, justifyContent: 'center'}}
         >
-          {readingStatus ? <> Done Reading </> : <> Unread </>}
-        </button>
-        <div>
-          {this.props.article ? (
-            <div dangerouslySetInnerHTML={{__html: body}} />
-          ) : null}
-        </div>
-      </div>
+          <div>
+            {this.props.article ? (
+              <div dangerouslySetInnerHTML={{__html: body}} />
+            ) : null}
+          </div>
+        </Card>
+      </Grid>
     )
   }
 }

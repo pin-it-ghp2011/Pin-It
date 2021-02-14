@@ -34,7 +34,8 @@ const puppeteerArticle = async url => {
     body: body,
     screenshotName: imageNameFromTitle,
     dateAdded: new Date().toDateString(),
-    readingStatus: false
+    readingStatus: false,
+    tag: 'Misc'
   }
 
   await browser.close()

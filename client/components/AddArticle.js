@@ -9,6 +9,7 @@ import CardMedia from '@material-ui/core/CardMedia'
 import CardActions from '@material-ui/core/CardActions'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
+import Box from '@material-ui/core/Box'
 import {
   TextField,
   FormControl,
@@ -48,7 +49,7 @@ class AddArticle extends React.Component {
     //  }
     this.setState({
       url: '',
-      tag: 'misc',
+      tag: '',
       open: true
     })
   }
@@ -65,81 +66,87 @@ class AddArticle extends React.Component {
         className="add-article-form"
         style={{display: 'flex', alignContent: 'center'}}
       >
-        <Grid item xs={4}>
-          <Card
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              flexDirection: 'column',
-              alignContent: 'flex-start',
-              height: 800
-              // width: 500,
-            }}
-          >
-            <form onSubmit={this.handleSubmit}>
-              <CardHeader height="1" title="Add Article" />
-              <CardMedia
-                style={{height: 0, paddingTop: '56.25%', flex: 1}}
-                image={image1}
-              />
-              <CardContent
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  container: true,
-                  alignContent: 'center'
-                }}
+        <Card
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            flexDirection: 'column',
+            alignContent: 'flex-start',
+            height: 500,
+            width: 500
+          }}
+        >
+          <form onSubmit={this.handleSubmit}>
+            <CardMedia
+              style={{
+                maxHeight: 225,
+                minHeight: 150,
+                paddingTop: '10%',
+                flex: 1
+              }}
+              image={image1}
+            />
+            <CardContent
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                container: true,
+                alignContent: 'center'
+              }}
+            >
+              <Typography
+                gutterBottom
+                variant="overline"
+                style={{paddingLeft: '0.25%'}}
               >
-                <Typography
-                  gutterBottom
-                  variant="h6"
-                  style={{paddingLeft: '0.25%'}}
-                >
-                  Don't worry about losing your article in the pile. Just "Pin
-                  It". Add the article link below and it will be saved in your
-                  collection for future reading.
-                </Typography>
-                <TextField
-                  type="url"
-                  name="url"
-                  label="Paste Article URL Here!"
-                  variant="outlined"
-                  fullWidth={true}
-                  value={this.state.url}
+                Don't worry about losing your article in the pile. Just "Pin
+                It". Add the article link below and it will be saved in your
+                collection for future reading.
+              </Typography>
+              <TextField
+                type="url"
+                name="url"
+                placeholder="Paste Article URL Here!"
+                variant="outlined"
+                fullWidth={true}
+                size="small"
+                value={this.state.url}
+                onChange={this.handleChange}
+                required
+              />
+              <FormControl variant="outlined" size="small">
+                {/* <InputLabel>Choose the Category</InputLabel> */}
+                <Select
+                  displayEmpty
+                  placeholder="Category"
+                  value={this.state.tag}
+                  name="tag"
                   onChange={this.handleChange}
-                  required
-                />
-                <FormControl variant="outlined">
-                  <InputLabel>Choose the Category</InputLabel>
-                  <Select
-                    value={this.state.tag}
-                    name="tag"
-                    onChange={this.handleChange}
-                  >
-                    <MenuItem value="">Category</MenuItem>
-                    <MenuItem value="News">News</MenuItem>
-                    <MenuItem value="Professional">Professional</MenuItem>
-                    <MenuItem value="Home and Leisure">
-                      Home and Leisure
-                    </MenuItem>
-                    <MenuItem value="Culture">Culture</MenuItem>
-                    <MenuItem value="Sports">Sports</MenuItem>
-                    <MenuItem value="Misc">Misc</MenuItem>
-                  </Select>
-                </FormControl>
-                <Button color="primary" type="submit">
-                  Pin It
-                </Button>
-                <Snackbar
-                  autoHideDuration={2000}
-                  open={this.state.open}
-                  onClose={this.handleClose}
                 >
-                  <Alert onClose={this.handleClose} severity="success">
-                    Your Article has been Pinned
-                  </Alert>
-                </Snackbar>
-                {/* {this.state.showAlert ? (
+                  <MenuItem value="">
+                    <em>Category</em>
+                  </MenuItem>
+                  <MenuItem value="News">News</MenuItem>
+                  <MenuItem value="Professional">Professional</MenuItem>
+                  <MenuItem value="Home and Leisure">Home and Leisure</MenuItem>
+                  <MenuItem value="Culture">Culture</MenuItem>
+                  <MenuItem value="Sports">Sports</MenuItem>
+                  <MenuItem value="Misc">Misc</MenuItem>
+                </Select>
+              </FormControl>
+              <Button color="secondary" type="submit">
+                Pin It
+              </Button>
+              <Snackbar
+                autoHideDuration={2000}
+                open={this.state.open}
+                onClose={this.handleClose}
+              >
+                <Alert onClose={this.handleClose} severity="success">
+                  Your Article has been Pinned
+                </Alert>
+              </Snackbar>
+              {/* {this.state.showAlert ? (
                 <div>
                   <Alert>
                     <AlertTitle>Success</AlertTitle>
@@ -147,10 +154,9 @@ class AddArticle extends React.Component {
                   </Alert>
                 </div>
               ) : null}  */}
-              </CardContent>
-            </form>
-          </Card>
-        </Grid>
+            </CardContent>
+          </form>
+        </Card>
       </Grid>
     )
   }
