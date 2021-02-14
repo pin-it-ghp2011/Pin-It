@@ -65,13 +65,14 @@ router.get('/:docId', async (req, res, next) => {
 })
 
 //add article to cloudant from puppeteer-from addArticle thunk
+
 router.post('/', async (req, res, next) => {
   try {
-    const {url, tag} = req.body
-    console.log('post route-url passed', url, tag)
+    const url = req.body.url
+    const tag = req.body.tag !== '' ? req.body.tag : 'Misc'
     const myOutputFromPuppeteer = await puppeteerArticle(url)
     const newArticle = {...myOutputFromPuppeteer, tag}
-    await cloudant.use('pinit-test-linh').insert(newArticle) //cloudant
+    await cloudant.use('pinit-test-linh').insert(newArticle)
     myLocalDB.sync(remotedb)
     res.send(myOutputFromPuppeteer)
   } catch (error) {
