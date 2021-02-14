@@ -22,14 +22,13 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 100,
     borderRadius: '25%',
     padding: 10
-  },
-  toolbar: {}
+  }
 }))
 function ScrollTop(props) {
   const {children, window} = props
   const classes = useStyles()
   // Note that you normally won't need to set the window ref as useScrollTrigger
-  // will default to window.
+  // will default to: window.
   // This is only being set here because the demo is in an iframe.
   const trigger = useScrollTrigger({
     target: window ? window() : undefined,
@@ -63,11 +62,10 @@ ScrollTop.propTypes = {
 export default function NavHeader(props) {
   const classes = useStyles()
   return (
-    <React.Fragment>
+    <div className={classes.root}>
       <CssBaseline />
       <AppBar color="primary" mx="auto">
         <Toolbar>
-          <img src="pinitLogo.png" alt="logo" className={classes.logo} />
           <NavLink to="/">
             <IconButton>Home </IconButton>
           </NavLink>
@@ -75,8 +73,9 @@ export default function NavHeader(props) {
             <IconButton>All Articles </IconButton>
           </NavLink>
           <NavLink to="/addArticle">
-            <IconButton>Add Article </IconButton>
+            <IconButton className={classes.pushIcon}>Add Article </IconButton>
           </NavLink>
+          <img src="pinitLogo.png" alt="logo" className={classes.logo} />
         </Toolbar>
       </AppBar>
       <Toolbar id="back-to-top-anchor" />
@@ -88,6 +87,6 @@ export default function NavHeader(props) {
           <KeyboardArrowUpIcon />
         </Fab>
       </ScrollTop>
-    </React.Fragment>
+    </div>
   )
 }

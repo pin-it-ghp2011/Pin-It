@@ -20,7 +20,7 @@ window.addEventListener('DOMContentLoaded', () => {
           },
           body: `url=${currentUrl}`
         })
-        alert(`add article successfully!`)
+        alert(`Article saved successfully!`)
       } catch (error) {
         alert(error, 'banana')
       }
