@@ -4,7 +4,7 @@
 # Pin It
 ## The Reader for All Your On and Offline Needs
 
-## Overview
+## Introduction
 
 If you have often found yourself bogged down with at least a hundred tabs open across ten different windows, wishing for a way to consolidate what you need in one place without blindly searching through bookmarks, Pin It is here for you. It is a web app that helps condense the sheer number of browser tabs open on your computer by giving you the option to save articles and read them later at your leisure, especially if you find yourself without internet.
 
