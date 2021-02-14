@@ -21,6 +21,6 @@
   "browser_action": {
     "default_title": "Pin It",
     "default_popup": "popup.html",
-    "default_icon": "pinitLogo.png"
+    "default_icon": "pinitpin.png"
   }
 }
