@@ -1,5 +1,5 @@
 
-<img align="left" alt="RM" src="https://github.com/pin-it-ghp2011/Pin-It-Final/blob/main/public/pinitLogo.png" width="96" height="96">
+<img align="left" alt="RM" src="https://github.com/pin-it-ghp2011/Pin-It-Final/blob/main/public/pinitLogo.png" width="50" height="50">
 
 ## Pin It: The Reader for All Your On and Offline Needs
 
