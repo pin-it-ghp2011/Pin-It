@@ -44,4 +44,4 @@ Pin It was built using [React](https://reactjs.org), [Node](https://nodejs.org/e
 ## Team :octocat: :octocat: :octocat: :octocat:
 ---- 
  ### Heather
- [GitHub](https://github.com/heathernoto)
+ [!GitHub](https://github.com/heathernoto)
