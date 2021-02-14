@@ -12,21 +12,36 @@ import Container from '@material-ui/core/Container'
 import Fab from '@material-ui/core/Fab'
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp'
 import Zoom from '@material-ui/core/Zoom'
+import AddBoxIcon from '@material-ui/icons/AddBox'
+import SvgIcon from '@material-ui/core/SvgIcon'
+import LibraryBooksRoundedIcon from '@material-ui/icons/LibraryBooksRounded'
+
 const useStyles = makeStyles(theme => ({
   root: {
-    position: 'absolute',
+    position: 'fixed',
     bottom: theme.spacing(2),
     right: theme.spacing(2)
   },
   logo: {
-    maxWidth: 100,
-    borderRadius: '25%',
-    padding: 10
+    maxWidth: 75,
+    borderRadius: '5%',
+    paddingTop: 10,
+    padding: 5,
+    opacity: '80%'
   },
   pushIconRight: {
     flexGrow: 1
   }
 }))
+
+function HomeIcon(props) {
+  return (
+    <SvgIcon {...props}>
+      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+    </SvgIcon>
+  )
+}
+
 function ScrollTop(props) {
   const {children, window} = props
   const classes = useStyles()
@@ -65,20 +80,32 @@ ScrollTop.propTypes = {
 export default function NavHeader(props) {
   const classes = useStyles()
   return (
-    <div className={classes.root}>
+    <React.Fragment>
       <CssBaseline />
       <AppBar color="primary" mx="auto">
         <Toolbar className={classes.bar}>
           <NavLink to="/">
-            <IconButton>Home </IconButton>
+            <IconButton>
+              <HomeIcon />
+              Home{' '}
+            </IconButton>
           </NavLink>
           <NavLink to="/articles">
-            <IconButton>All Articles </IconButton>
+            <IconButton>
+              <LibraryBooksRoundedIcon />
+              Collection
+            </IconButton>
           </NavLink>
           <NavLink to="/addArticle" className={classes.pushIconRight}>
-            <IconButton>Add Article </IconButton>
+            <IconButton>
+              <AddBoxIcon />
+              Article
+            </IconButton>
           </NavLink>
-          <img src="pinitLogo.png" alt="logo" className={classes.logo} />
+
+          <NavLink to="/">
+            <img src="pinitLogo.png" alt="logo" className={classes.logo} />
+          </NavLink>
         </Toolbar>
       </AppBar>
       <Toolbar id="back-to-top-anchor" />
@@ -90,6 +117,6 @@ export default function NavHeader(props) {
           <KeyboardArrowUpIcon />
         </Fab>
       </ScrollTop>
-    </div>
+    </React.Fragment>
   )
 }
