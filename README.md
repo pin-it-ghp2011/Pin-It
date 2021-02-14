@@ -24,7 +24,7 @@ npm run start-dev
 
 Pin It uses [CouchDB](http://couchdb.apache.org). Please install this on your local machine before running our web app!
 
-Our Pin It chrome extension can be installed [here]
+Our chrome extension can be installed [here]
 
 Create a secrets.js file with these process.env variables
 
