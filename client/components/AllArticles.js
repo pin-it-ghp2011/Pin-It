@@ -10,27 +10,12 @@ import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 
 export class AllArticles extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      clicked: false
-    }
-    this.handleClick = this.handleClick.bind(this)
-  }
   componentDidMount() {
     this.props.loadArticles()
-  }
-  handleClick() {
-    this.setState({
-      clicked: true
-    })
   }
 
   render() {
     const articles = this.props.articles || []
-    console.log('ALL ARTICLES: ', articles)
-    console.log('article1', articles[0])
-
     return articles ? (
       <div>
         <Grid container padding={10}>
@@ -70,7 +55,7 @@ export class AllArticles extends React.Component {
                         color="primary"
                         href={`/articles/${article.id}`}
                       >
-                        Read
+                        Details
                       </Button>
                       <Button
                         size="small"
