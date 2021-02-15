@@ -10,7 +10,7 @@ import {NavLink} from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
   body: {
-    paddingTop: '20%', //added this
+    paddingTop: '15%', //added this
     position: 'absolute',
     left: '50%',
     top: '50%',
