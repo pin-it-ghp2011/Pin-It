@@ -34,17 +34,14 @@ export default function AboutUs() {
     >
       <Grid item xs={3}>
         <Card className={classes.root}>
-          <CardMedia
-            style={{height: 0, paddingTop: '100%'}}
-            image="linh.JPG"
-          />
+          <CardMedia style={{height: 0, paddingTop: '100%'}} image="linh.JPG" />
           <CardContent>
             <Typography variant="h6">Linh</Typography>
             <CardActions>
               <GitHubIcon />
-              <Link to="https://github.com/Vuthuylinh">github</Link>
+              <a href="https://github.com/Vuthuylinh">github</a>
               <LinkedInIcon />
-              <Link to="https://www.linkedin.com/in/linh-vu-de/">linkedin</Link>
+              <a href="https://www.linkedin.com/in/linh-vu-de/">linkedin</a>
             </CardActions>
           </CardContent>
         </Card>
@@ -57,9 +54,9 @@ export default function AboutUs() {
             <Typography variant="h6">Ivy</Typography>
             <CardActions>
               <GitHubIcon />
-              <Link to="https://github.com/liuivy">github</Link>
+              <a href="https://github.com/liuivy">github</a>
               <LinkedInIcon />
-              <Link to="https://www.linkedin.com/in/liu-ivy/">linkedin</Link>
+              <a href="https://www.linkedin.com/in/liu-ivy/">linkedin</a>
             </CardActions>
           </CardContent>
         </Card>
@@ -77,11 +74,11 @@ export default function AboutUs() {
             <Typography variant="h6">Ruchi</Typography>
             <CardActions>
               <GitHubIcon />
-              <Link to="https://github.com/ruchibrata">github</Link>
+              <a href="https://github.com/ruchibrata">github</a>
               <LinkedInIcon />
-              <Link to="https://www.linkedin.com/in/ruchibratakundu/">
+              <a href="https://www.linkedin.com/in/ruchibratakundu/">
                 linkedin
-              </Link>
+              </a>
             </CardActions>
           </CardContent>
         </Card>
@@ -99,11 +96,11 @@ export default function AboutUs() {
             <Typography variant="h6">Heather</Typography>
             <CardActions>
               <GitHubIcon />
-              <Link to="https://github.com/heathernoto">github</Link>
+              <a href="https://github.com/heathernoto">github</a>
               <LinkedInIcon />
-              <Link to="https://www.linkedin.com/in/heather-berardo-noto/">
+              <a href="https://www.linkedin.com/in/heather-berardo-noto/">
                 linkedin
-              </Link>
+              </a>
             </CardActions>
           </CardContent>
         </Card>
