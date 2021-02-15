@@ -1,7 +1,7 @@
 
 <img align="left" alt="RM" src="https://github.com/pin-it-ghp2011/Pin-It-Final/blob/main/public/pinitLogo.png" width="50" height="50">
 
-# Pin It
+# Pin It  :sparkles:
 ## The Reader for All Your On and Offline Needs
 
 ## Introduction
