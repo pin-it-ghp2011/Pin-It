@@ -15,6 +15,7 @@ import Zoom from '@material-ui/core/Zoom'
 import AddBoxIcon from '@material-ui/icons/AddBox'
 import SvgIcon from '@material-ui/core/SvgIcon'
 import LibraryBooksRoundedIcon from '@material-ui/icons/LibraryBooksRounded'
+import InfoIcon from '@material-ui/icons/Info'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -49,9 +50,6 @@ function HomeIcon(props) {
 function ScrollTop(props) {
   const {children, window} = props
   const classes = useStyles()
-  // Note that you normally won't need to set the window ref as useScrollTrigger
-  // will default to: window.
-  // This is only being set here because the demo is in an iframe.
   const trigger = useScrollTrigger({
     target: window ? window() : undefined,
     disableHysteresis: true,
@@ -75,10 +73,6 @@ function ScrollTop(props) {
 }
 ScrollTop.propTypes = {
   children: PropTypes.element.isRequired,
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
   window: PropTypes.func
 }
 export default function NavHeader(props) {
@@ -102,10 +96,17 @@ export default function NavHeader(props) {
             </IconButton>
           </NavLink>
 
-          <NavLink to="/addArticle" className={classes.pushIconRight}>
+          <NavLink to="/addArticle">
             <IconButton className={classes.button}>
               <AddBoxIcon />
               Article
+            </IconButton>
+          </NavLink>
+
+          <NavLink to="/aboutUs" className={classes.pushIconRight}>
+            <IconButton className={classes.button}>
+              <InfoIcon />
+              About Us
             </IconButton>
           </NavLink>
 

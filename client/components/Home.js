@@ -79,8 +79,6 @@ const Home = () => {
           </Box>
         </Grid>
       </center>
-      {/*
-      { exit && <Button onClick={() => setExit(false)}>Click to enter</Button>} */}
     </div>
   )
 }

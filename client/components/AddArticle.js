@@ -3,22 +3,21 @@ import {connect} from 'react-redux'
 import {addArticleThunk} from '../store/articles'
 import Grid from '@material-ui/core/Grid'
 import Card from '@material-ui/core/Card'
-import CardHeader from '@material-ui/core/CardHeader'
+
 import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
-import CardActions from '@material-ui/core/CardActions'
+
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
-import Box from '@material-ui/core/Box'
+
 import {
   TextField,
   FormControl,
-  InputLabel,
   Select,
   MenuItem,
   Snackbar
 } from '@material-ui/core'
-import {Alert} from '@material-ui/lab'
+import {Alert, AlertTitle} from '@material-ui/lab'
 let image1 =
   'https://images.unsplash.com/photo-1541613569553-332a2574a508?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80%27'
 class AddArticle extends React.Component {
@@ -41,12 +40,9 @@ class AddArticle extends React.Component {
   handleSubmit(event) {
     event.preventDefault()
     const {url, tag} = this.state
-    console.log('in add article handle submit, url, tag:', url, tag)
+    //console.log('in add article handle submit, url, tag:', url, tag)
     this.props.pinArticle(url, tag)
-    //   if (token !== null)
-    //  {
-    // this.setState({open: true})
-    //  }
+
     this.setState({
       url: '',
       tag: '',
@@ -143,7 +139,7 @@ class AddArticle extends React.Component {
                 onClose={this.handleClose}
               >
                 <Alert onClose={this.handleClose} severity="success">
-                  Your Article has been Pinned
+                  Your Article has been Pinned!
                 </Alert>
               </Snackbar>
               {/* {this.state.showAlert ? (
