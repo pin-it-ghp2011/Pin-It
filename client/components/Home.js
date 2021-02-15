@@ -74,7 +74,9 @@ const Home = () => {
             </Typography>
             <br />
             <NavLink to="/articles">
-              <Button onClick={() => setExit(true)}>ENTER</Button>
+              <Button onClick={() => setExit(true)} color="secondary">
+                ENTER
+              </Button>
             </NavLink>
           </Box>
         </Grid>
