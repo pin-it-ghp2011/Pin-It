@@ -36,10 +36,7 @@ With your IDs and secrets:
 
 ## :rocket: [Deployment](https://pin-it-reader.herokuapp.com/) :rocket:
 
-
-
-Pin It was built using [React](https://reactjs.org), [Node](https://nodejs.org/en/), [Cloudant](https://www.ibm.com/cloud/cloudant), and [PouchDb](https://pouchdb.com) by [Linh](https://github.com/Vuthuylinh), [Heather](https://github.com/heathernoto), [Ruchi](https://github.com/ruchibrata), and [Ivy](https://github.com/liuivy).
-
+Pin It was built using [React](https://reactjs.org), [Node](https://nodejs.org/en/), [Cloudant](https://www.ibm.com/cloud/cloudant), and [PouchDb](https://pouchdb.com)
 
 ## Team :octocat: :octocat: :octocat: :octocat:
 ---- 
