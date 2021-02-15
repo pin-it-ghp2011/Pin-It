@@ -16,6 +16,17 @@ const theme = createMuiTheme({
     text: {
       main: '#FF999C'
     }
+  },
+  typography: {
+    h5: {
+      color: '#006699'
+    },
+    h6: {
+      color: '#006699'
+    },
+    overline: {
+      color: '#006699'
+    }
   }
 })
 

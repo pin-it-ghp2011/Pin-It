@@ -4,8 +4,15 @@ body {
   background-attachment: fixed;
 }
 
-a {
+a:link,
+a:visited {
   text-decoration: none;
+  color: #b46166;
+}
+
+a:hover,
+a:active {
+  color: #e89194;
 }
 
 label {
