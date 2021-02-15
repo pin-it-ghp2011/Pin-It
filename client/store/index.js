@@ -17,7 +17,3 @@ export default store
 export * from './user'
 export * from './articles'
 export * from './singleArticle'
-
-//REDUX LOGGER
-//import {createLogger} from 'redux-logger'
-//, createLogger({collapsed: true})//Add after apply middleware

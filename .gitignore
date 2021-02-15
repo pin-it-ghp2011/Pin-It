@@ -9,3 +9,5 @@ myLocalDB
 .env
 articles/*
 
+config/.env.local
+config/firebaseConfig.js

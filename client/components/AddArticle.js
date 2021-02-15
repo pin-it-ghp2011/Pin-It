@@ -17,7 +17,7 @@ import {
   MenuItem,
   Snackbar
 } from '@material-ui/core'
-import {Alert, AlertTitle} from '@material-ui/lab'
+import {Alert} from '@material-ui/lab'
 let image1 =
   'https://images.unsplash.com/photo-1586488902367-b1ef9e974582?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=334&q=80'
 class AddArticle extends React.Component {
@@ -40,7 +40,7 @@ class AddArticle extends React.Component {
   handleSubmit(event) {
     event.preventDefault()
     const {url, tag} = this.state
-    //console.log('in add article handle submit, url, tag:', url, tag)
+
     this.props.pinArticle(url, tag)
 
     this.setState({
@@ -58,7 +58,6 @@ class AddArticle extends React.Component {
         container
         spacing={0}
         direction="column"
-        // fullwidth="true"
         className="add-article-form"
         style={{display: 'flex', alignContent: 'center'}}
       >
@@ -112,7 +111,6 @@ class AddArticle extends React.Component {
                 required
               />
               <FormControl variant="outlined" size="small">
-                {/* <InputLabel>Choose the Category</InputLabel> */}
                 <Select
                   displayEmpty
                   placeholder="Category"
@@ -143,14 +141,6 @@ class AddArticle extends React.Component {
                   Your Article has been Pinned!
                 </Alert>
               </Snackbar>
-              {/* {this.state.showAlert ? (
-                <div>
-                  <Alert>
-                    <AlertTitle>Success</AlertTitle>
-                    onConfirm={() => this.hideAlert()}
-                  </Alert>
-                </div>
-              ) : null}  */}
             </CardContent>
           </form>
         </Card>

@@ -66,7 +66,6 @@ router.get('/:docId', async (req, res, next) => {
 })
 
 //add article to cloudant from puppeteer-from addArticle thunk
-
 router.post('/', async (req, res, next) => {
   try {
     const url = req.body.url
