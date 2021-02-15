@@ -24,15 +24,11 @@ Our chrome extension can be installed after cloning our repo by going to ``chrom
 
 Create a .env file with these process.env variables:
 
-* process.env.GOOGLE_CALLBACK = '/auth/google/callback';
-
 With your IDs and secrets:
 
-* process.env.CLOUDANT_ID = 'Your CouchDB ID'
-* process.env.CLOUDANT_SECRET = 'Your CouchDB Secret'
+* process.env.CLOUDANT_USERNAME = 'Your CouchDB ID'
+* process.env.CLOUDANT_PASSWORD = 'Your CouchDB Password'
 * process.env.COUCHDB_URL = 'Your CouchDB URL'
-* process.env.GOOGLE_CLIENT_ID = 'Your Google Client ID'
-* process.env.GOOGLE_CLIENT_SECRET = 'Your Google Client Secret'
 
 ## :rocket: [Deployment](https://pin-it-reader.herokuapp.com/) :rocket:
 
