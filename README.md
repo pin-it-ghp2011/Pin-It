@@ -34,9 +34,9 @@ With your IDs and secrets:
 * process.env.GOOGLE_CLIENT_ID = 'Your Google Client ID'
 * process.env.GOOGLE_CLIENT_SECRET = 'Your Google Client Secret'
 
-## :rocket: Deployment :rocket:
+## :rocket: [Deployment](https://pin-it-reader.herokuapp.com/) :rocket:
 
-(https://pin-it-reader.herokuapp.com/)
+
 
 Pin It was built using [React](https://reactjs.org), [Node](https://nodejs.org/en/), [Cloudant](https://www.ibm.com/cloud/cloudant), and [PouchDb](https://pouchdb.com) by [Linh](https://github.com/Vuthuylinh), [Heather](https://github.com/heathernoto), [Ruchi](https://github.com/ruchibrata), and [Ivy](https://github.com/liuivy).
 
