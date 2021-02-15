@@ -7,82 +7,107 @@ import CardActionArea from '@material-ui/core/CardActionArea'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
+import {Link} from 'react-router-dom'
+import GitHubIcon from '@material-ui/icons/GitHub'
+import LinkedInIcon from '@material-ui/icons/LinkedIn'
 
 const useStyles = makeStyles({
   root: {
     maxWidth: 345
+  },
+  typography: {
+    align: 'center'
   }
 })
 
 export default function AboutUs() {
   const classes = useStyles()
+
   return (
-    <Grid container direction="row" justify="center" alignItems="center">
-      <Card className={classes.root}>
-        <CardMedia image="linh.JPG" />
-        <CardContent>
-          <Typography variant="h5">Linh</Typography>
+    <Grid
+      container
+      direction="row"
+      justify="center"
+      alignItems="center"
+      spacing={2}
+      padding={10}
+    >
+      <Grid item xs={3}>
+        <Card className={classes.root}>
+          <CardMedia
+            style={{height: 0, paddingTop: '100%'}}
+            image="linh.JPG"
+          />
+          <CardContent>
+            <Typography variant="h6">Linh</Typography>
+            <CardActions>
+              <GitHubIcon />
+              <Link to="https://github.com/Vuthuylinh">github</Link>
+              <LinkedInIcon />
+              <Link to="https://www.linkedin.com/in/linh-vu-de/">linkedin</Link>
+            </CardActions>
+          </CardContent>
+        </Card>
+      </Grid>
 
-          <a href="https://github.com/Vuthuylinh" target="_blank">
-            github
-          </a>
-          <a href="https://www.linkedin.com/in/linh-vu-de/" target="_blank">
-            linkedin
-          </a>
-        </CardContent>
-      </Card>
-
-      <Card className={classes.root}>
-        <CardMedia image="ivy.jpeg" />
-        <CardContent>
-          <Typography variant="h5">Ivy</Typography>
-
-          <a href="https://github.com/liuivy" target="_blank">
-            github
-          </a>
-          <a href="https://www.linkedin.com/in/liu-ivy/" target="_blank">
-            linkedin
-          </a>
-        </CardContent>
-      </Card>
-
-      {/* xxxxx */}
-
-      <Card className={classes.root}>
-        <CardMedia image="ivy.jpeg" />
-        <CardContent>
-          <Typography variant="h5">Ruchi</Typography>
-
-          <a href="https://github.com/ruchibrata" target="_blank">
-            github
-          </a>
-          <a
-            href="https://www.linkedin.com/in/ruchibratakundu/"
-            target="_blank"
-          >
-            linkedin
-          </a>
-        </CardContent>
-      </Card>
+      <Grid item xs={3}>
+        <Card className={classes.root}>
+          <CardMedia style={{height: 0, paddingTop: '100%'}} image="ivy.jpeg" />
+          <CardContent>
+            <Typography variant="h6">Ivy</Typography>
+            <CardActions>
+              <GitHubIcon />
+              <Link to="https://github.com/liuivy">github</Link>
+              <LinkedInIcon />
+              <Link to="https://www.linkedin.com/in/liu-ivy/">linkedin</Link>
+            </CardActions>
+          </CardContent>
+        </Card>
+      </Grid>
 
       {/* xxxxx */}
 
-      <Card className={classes.root}>
-        <CardMedia image="heather.jpeg" />
-        <CardContent>
-          <Typography variant="h5">Heather</Typography>
+      <Grid item xs={3}>
+        <Card className={classes.root}>
+          <CardMedia
+            style={{height: 0, paddingTop: '100%'}}
+            image="ruchi.png"
+          />
+          <CardContent>
+            <Typography variant="h6">Ruchi</Typography>
+            <CardActions>
+              <GitHubIcon />
+              <Link to="https://github.com/ruchibrata">github</Link>
+              <LinkedInIcon />
+              <Link to="https://www.linkedin.com/in/ruchibratakundu/">
+                linkedin
+              </Link>
+            </CardActions>
+          </CardContent>
+        </Card>
+      </Grid>
 
-          <a href="https://github.com/heathernoto" target="_blank">
-            github
-          </a>
-          <a
-            href="https://www.linkedin.com/in/heather-berardo-noto/"
-            target="_blank"
-          >
-            linkedin
-          </a>
-        </CardContent>
-      </Card>
+      {/* xxxxx */}
+
+      <Grid item xs={3}>
+        <Card className={classes.root}>
+          <CardMedia
+            style={{height: 0, paddingTop: '100%'}}
+            image="heather.jpeg"
+          />
+          <CardContent>
+            <Typography variant="h6">Heather</Typography>
+            <CardActions>
+              <GitHubIcon />
+              <Link to="https://github.com/heathernoto">github</Link>
+              <LinkedInIcon />
+              <Link to="https://www.linkedin.com/in/heather-berardo-noto/">
+                linkedin
+              </Link>
+            </CardActions>
+          </CardContent>
+        </Card>
+      </Grid>
     </Grid>
   )
 }
