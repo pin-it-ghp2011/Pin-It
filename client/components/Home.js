@@ -40,7 +40,7 @@ const Home = () => {
               Pin It!
             </Typography>
             <Typography variant="overline">
-              It's the reader for all your on and offline needs.
+              It's the reader for all your on- and offline needs.
             </Typography>
             <br />
             <NavLink to="/articles">
