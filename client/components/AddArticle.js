@@ -19,7 +19,7 @@ import {
 } from '@material-ui/core'
 import {Alert, AlertTitle} from '@material-ui/lab'
 let image1 =
-  'https://images.unsplash.com/photo-1541613569553-332a2574a508?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80%27'
+  'https://images.unsplash.com/photo-1586488902367-b1ef9e974582?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=334&q=80'
 class AddArticle extends React.Component {
   constructor(props) {
     super(props)
@@ -75,7 +75,8 @@ class AddArticle extends React.Component {
           <form onSubmit={this.handleSubmit}>
             <CardMedia
               style={{
-                maxHeight: 225,
+                maxHeight: 250,
+                alignSelf: 'center',
                 minHeight: 150,
                 paddingTop: '10%',
                 flex: 1
@@ -95,9 +96,9 @@ class AddArticle extends React.Component {
                 variant="overline"
                 style={{paddingLeft: '0.25%'}}
               >
-                Don't worry about losing your article in the pile. Just "Pin
-                It". Add the article link below and it will be saved in your
-                collection for future reading.
+                Don't worry about losing track of your articles in your windows.
+                Just <i>pin it</i>! Add the article link below and it will be
+                saved in your collection for future reading.
               </Typography>
               <TextField
                 type="url"

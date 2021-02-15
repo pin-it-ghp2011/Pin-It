@@ -50,7 +50,7 @@ export default function AboutUs() {
       <Grid item xs={3}>
         <Card className={classes.root}>
           <CardMedia style={{height: 0, paddingTop: '100%'}} image="ivy.jpeg" />
-          <CardContent>
+          <CardContent style={{align: 'center'}}>
             <Typography variant="h6">Ivy</Typography>
             <CardActions>
               <GitHubIcon />
