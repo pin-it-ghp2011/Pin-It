@@ -18,11 +18,11 @@ npm run start-dev
 
 ### :cactus: Prerequisites
 
-Pin It uses [CouchDB](http://couchdb.apache.org). Please install this on your local machine before running our web app!
+#### Pin It uses [CouchDB](http://couchdb.apache.org). Please install this on your local machine before running our web app!
 
 Our chrome extension can be installed after cloning our repo by going to ``chrome://extensions/``, clicking on ``Load unpacked``, and using our ``extensions`` folder to properly pin any site you want with the click of a button.
 
-Create a .env file with these process.env variables
+Create a .env file with these process.env variables:
 
 * process.env.GOOGLE_CALLBACK = '/auth/google/callback';
 
