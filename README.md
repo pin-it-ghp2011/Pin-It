@@ -26,9 +26,9 @@ Create a .env file with these process.env variables:
 
 With your IDs and secrets:
 
-* process.env.CLOUDANT_USERNAME = 'Your CouchDB ID'
-* process.env.CLOUDANT_PASSWORD = 'Your CouchDB Password'
-* process.env.COUCHDB_URL = 'Your CouchDB URL'
+* CLOUDANT_USERNAME = 'Your Cloudant Username'
+* CLOUDANT_PASSWORD = 'Your Cloudant Password'
+* CLOUDANT_URL = 'Your Cloudant URL'
 
 ## :rocket: [Deployment](https://pin-it-reader.herokuapp.com/) :rocket:
 
