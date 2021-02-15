@@ -36,7 +36,7 @@ class SingleArticle extends React.Component {
             type="button"
             id="update"
             color="primary"
-            variant="contained"
+            variant="outlined"
             onClick={() => this.props.updateReadingStatus(articleId)}
           >
             {readingStatus ? <> Done Reading </> : <> Unread </>}

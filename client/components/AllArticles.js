@@ -46,13 +46,17 @@ export class AllArticles extends React.Component {
                       image={article.doc.screenshotName}
                     />
                     <CardContent>
-                      <Typography gutterBottom variant="subtitle1">
+                      <Typography
+                        gutterBottom
+                        variant="subtitle1"
+                        color="secondary"
+                      >
                         {article.doc.title}
                       </Typography>
-                      <Typography variant="subtitle2">
+                      <Typography variant="subtitle2" color="secondary">
                         Category: {article.doc.tag}
                       </Typography>
-                      <Typography variant="subtitle2">
+                      <Typography variant="subtitle2" color="secondary">
                         Status: {article.doc.readingStatus ? 'Read' : 'Unread'}
                       </Typography>
                     </CardContent>
@@ -63,13 +67,18 @@ export class AllArticles extends React.Component {
                       }}
                     >
                       <NavLink to={`/articles/${article.id}`}>
-                        <Button size="small" color="secondary">
+                        <Button
+                          variant="outlined"
+                          size="small"
+                          color="secondary"
+                        >
                           Details
                         </Button>
                       </NavLink>
                       <Button
                         size="small"
                         color="secondary"
+                        variant="outlined"
                         onClick={() => this.props.removeArticle(article)}
                       >
                         Remove

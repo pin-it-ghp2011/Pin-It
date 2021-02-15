@@ -131,7 +131,7 @@ class AddArticle extends React.Component {
                   <MenuItem value="Misc">Misc</MenuItem>
                 </Select>
               </FormControl>
-              <Button color="secondary" type="submit">
+              <Button color="secondary" type="submit" variant="outlined">
                 Pin It
               </Button>
               <Snackbar
