@@ -48,14 +48,14 @@ Pin It was built using [React](https://reactjs.org), [Node](https://nodejs.org/e
  [![Linkedin](https://i.stack.imgur.com/gVE0j.png) LinkedIn](https://www.linkedin.com/in/linh-vu-de/)
  ### Heather Noto
  [![GitHub](https://i.stack.imgur.com/tskMh.png) GitHub](https://github.com/heathernoto) 
- [![Linkedin](https://i.stack.imgur.com/gVE0j.png) LinkedIn](https://www.linkedin.com/)
+ [![Linkedin](https://i.stack.imgur.com/gVE0j.png) LinkedIn](https://www.linkedin.com/in/heather-berardo-noto/)
  ### Ruchi Kundu
  [![GitHub](https://i.stack.imgur.com/tskMh.png) GitHub](https://github.com/ruchibrata) 
- [![Linkedin](https://i.stack.imgur.com/gVE0j.png) LinkedIn](https://www.linkedin.com/)
+ [![Linkedin](https://i.stack.imgur.com/gVE0j.png) LinkedIn](https://www.linkedin.com/in/ruchibratakundu/)
  
  ### Ivy Liu
  [![GitHub](https://i.stack.imgur.com/tskMh.png) GitHub](https://github.com/liuivy) 
- [![Linkedin](https://i.stack.imgur.com/gVE0j.png) LinkedIn](https://www.linkedin.com/)
+ [![Linkedin](https://i.stack.imgur.com/gVE0j.png) LinkedIn](https://www.linkedin.com/in/liu-ivy/)
  
  
 
