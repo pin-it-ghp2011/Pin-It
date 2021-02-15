@@ -38,7 +38,7 @@ With your IDs and secrets:
 
 Pin It was built using [React](https://reactjs.org), [Node](https://nodejs.org/en/), [Cloudant](https://www.ibm.com/cloud/cloudant), and [PouchDb](https://pouchdb.com).
 
-## Team :octocat: :octocat: :octocat: :octocat:
+## :octocat: :octocat: Team :octocat: :octocat: 
 ---- 
  ### :cherry_blossom: Linh Vu
  [![GitHub](https://i.stack.imgur.com/tskMh.png) GitHub](https://github.com/Vuthuylinh) 
