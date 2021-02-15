@@ -4,7 +4,6 @@ import {
   fetchSingleArticleThunk,
   updateArticleThunk
 } from '../store/singleArticle'
-import Paper from '@material-ui/core/Paper'
 import Card from '@material-ui/core/Card'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
@@ -18,7 +17,6 @@ class SingleArticle extends React.Component {
   }
   render() {
     const body = this.props.article ? this.props.article.body : null
-    // const title = this.props.article ? this.props.article.title : null
     const articleId = this.props.article ? this.props.article._id : null
     const readingStatus = this.props.article
       ? this.props.article.readingStatus
@@ -34,10 +32,11 @@ class SingleArticle extends React.Component {
         <Box style={{display: 'flex'}}>
           <Button
             style={{margin: '0 auto'}}
-            size="small"
-            color="primary"
+            size="medium"
             type="button"
             id="update"
+            color="primary"
+            variant="contained"
             onClick={() => this.props.updateReadingStatus(articleId)}
           >
             {readingStatus ? <> Done Reading </> : <> Unread </>}

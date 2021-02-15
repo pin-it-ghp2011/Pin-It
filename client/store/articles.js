@@ -23,7 +23,7 @@ export const fetchArticlesThunk = () => {
   return async dispatch => {
     try {
       const {data} = await axios.get('/api/articles')
-      console.log('in fetch allArticles thunk, data:', data.rows)
+      //console.log('in fetch allArticles thunk, data:', data.rows)
       dispatch(getArticles(data.rows))
     } catch (error) {
       console.log('something is wrong in the fetchArticles thunk:', error)
@@ -34,9 +34,9 @@ export const addArticleThunk = (url, tag) => {
   return async dispatch => {
     try {
       const urlAndTag = {url: url, tag: tag}
-      console.log('IN ARTICLES THUNK:articles& tag', urlAndTag)
+      //console.log('IN ARTICLES THUNK:articles& tag', urlAndTag)
       const {data} = await axios.post(`/api/articles`, urlAndTag)
-      console.log('add article thunk, after axios:data', urlAndTag)
+      //console.log('add article thunk, after axios:data', urlAndTag)
       dispatch(addArticle(data))
     } catch (error) {
       console.log('something is wrong in the addArticles thunk:', error)

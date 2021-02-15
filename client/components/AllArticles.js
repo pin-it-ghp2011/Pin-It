@@ -23,7 +23,15 @@ export class AllArticles extends React.Component {
           {articles.map(article => {
             return (
               <div key={article.id}>
-                <Grid item style={{display: 'flex', padding: 10}}>
+                <Grid
+                  item
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    padding: 10,
+                    justifyContent: 'center'
+                  }}
+                >
                   <Card
                     style={{
                       display: 'flex',
