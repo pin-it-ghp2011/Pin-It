@@ -22,7 +22,7 @@ Pin It uses [CouchDB](http://couchdb.apache.org). Please install this on your lo
 
 Our chrome extension can be installed after cloning our repo by going to ``chrome://extensions/``, clicking on ``Load unpacked``, and using our ``extensions`` folder to properly pin any site you want with the click of a button.
 
-Create a secrets.js file with these process.env variables
+Create a .env file with these process.env variables
 
 * process.env.GOOGLE_CALLBACK = '/auth/google/callback';
 
