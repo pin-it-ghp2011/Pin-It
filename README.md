@@ -34,7 +34,7 @@ With your IDs and secrets:
 * process.env.GOOGLE_CLIENT_ID = 'Your Google Client ID'
 * process.env.GOOGLE_CLIENT_SECRET = 'Your Google Client Secret'
 
-## Deployment :tada:
+## Deployment :metal: 
 
 (https://pin-it-reader.herokuapp.com/)
 
