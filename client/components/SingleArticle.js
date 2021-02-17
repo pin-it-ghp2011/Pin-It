@@ -8,6 +8,7 @@ import Card from '@material-ui/core/Card'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
 
 class SingleArticle extends React.Component {
   componentDidMount() {
@@ -18,6 +19,7 @@ class SingleArticle extends React.Component {
   render() {
     const body = this.props.article ? this.props.article.body : null
     const articleId = this.props.article ? this.props.article._id : null
+    const url = this.props.article.url ? this.props.article.url : null
     const readingStatus = this.props.article
       ? this.props.article.readingStatus
       : null
@@ -42,9 +44,14 @@ class SingleArticle extends React.Component {
             {readingStatus ? <> Done Reading </> : <> Unread </>}
           </Button>
         </Box>
+        <Box justifyContent="center" style={{display: 'flex'}}>
+          <Typography variant="overline">
+            <b>Article URL:</b> {url}
+          </Typography>
+        </Box>
         <Card
           variant="outlined"
-          style={{maxWidth: 750, padding: 50, justifyContent: 'center'}}
+          style={{maxWidth: '75%', padding: 50, justifyContent: 'center'}}
         >
           <div>
             {this.props.article ? (
