@@ -31,7 +31,7 @@ With your IDs and secrets:
 * CLOUDANT_URL = 'Your Cloudant URL'
 
 ## :rocket: [Deployment](https://pin-it-reader.herokuapp.com/) :rocket:
-## Tech Stacks
+## :sunny:Tech Stacks :sunny:
 
   * [React](https://reactjs.org)
   * [Redux](https://redux.js.org/)
