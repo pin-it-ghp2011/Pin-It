@@ -34,12 +34,12 @@ With your IDs and secrets:
 ## Tech Stacks
 
   * [React](https://reactjs.org)
-  * [Redux]
+  * [Redux](https://redux.js.org/)
   * [Meterial Ui](https://material-ui.com/)
   * [Node](https://nodejs.org/en/)
-  * [Express]
-  * [Puppeteer]
-  * [Google Chrome Extensions]
+  * [Express.js](http://expressjs.com/)
+  * [Puppeteer](https://developers.google.com/web/tools/puppeteer)
+  * [Google Chrome Extensions](https://developer.chrome.com/docs/extensions/)
   * [Cloudant](https://www.ibm.com/cloud/cloudant)
   * [PouchDb](https://pouchdb.com).
 
