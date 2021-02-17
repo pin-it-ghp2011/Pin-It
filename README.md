@@ -32,6 +32,7 @@ With your IDs and secrets:
 
 ## :rocket: [Deployment](https://pin-it-reader.herokuapp.com/) :rocket:
 ## :sunny:Tech Stacks :sunny:
+  <img src=https://media.giphy.com/media/VaROmTGEdt9vTjrVNr/giphy.gif />
 
   * [React](https://reactjs.org)
   * [Redux](https://redux.js.org/)
