@@ -31,8 +31,17 @@ With your IDs and secrets:
 * CLOUDANT_URL = 'Your Cloudant URL'
 
 ## :rocket: [Deployment](https://pin-it-reader.herokuapp.com/) :rocket:
+## Tech Stacks
 
-Pin It was built using [React](https://reactjs.org), [Node](https://nodejs.org/en/), [Cloudant](https://www.ibm.com/cloud/cloudant), and [PouchDb](https://pouchdb.com).
+  * [React](https://reactjs.org)
+  * [Redux]
+  * [Meterial Ui](https://material-ui.com/)
+  * [Node](https://nodejs.org/en/)
+  * [Express]
+  * [Puppeteer]
+  * [Google Chrome Extensions]
+  * [Cloudant](https://www.ibm.com/cloud/cloudant)
+  * [PouchDb](https://pouchdb.com).
 
 ## :octocat: :octocat: Team :octocat: :octocat: 
 ---- 
