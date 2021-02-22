@@ -42,7 +42,7 @@ With your IDs and secrets:
   * [Puppeteer](https://developers.google.com/web/tools/puppeteer)
   * [Google Chrome Extension](https://developer.chrome.com/docs/extensions/)
   * [Cloudant](https://www.ibm.com/cloud/cloudant)
-  * [PouchDb](https://pouchdb.com).
+  * [PouchDb](https://pouchdb.com)
 
 ## :octocat: :octocat: Team :octocat: :octocat: 
 ---- 
