@@ -36,7 +36,7 @@ With your IDs and secrets:
 
   * [React](https://reactjs.org)
   * [Redux](https://redux.js.org/)
-  * [Material Ui](https://material-ui.com/)
+  * [Material-UI](https://material-ui.com/)
   * [Node](https://nodejs.org/en/)
   * [Express.js](http://expressjs.com/)
   * [Puppeteer](https://developers.google.com/web/tools/puppeteer)
