@@ -36,11 +36,11 @@ With your IDs and secrets:
 
   * [React](https://reactjs.org)
   * [Redux](https://redux.js.org/)
-  * [Meterial Ui](https://material-ui.com/)
+  * [Material Ui](https://material-ui.com/)
   * [Node](https://nodejs.org/en/)
   * [Express.js](http://expressjs.com/)
   * [Puppeteer](https://developers.google.com/web/tools/puppeteer)
-  * [Google Chrome Extensions](https://developer.chrome.com/docs/extensions/)
+  * [Google Chrome Extension](https://developer.chrome.com/docs/extensions/)
   * [Cloudant](https://www.ibm.com/cloud/cloudant)
   * [PouchDb](https://pouchdb.com).
 
