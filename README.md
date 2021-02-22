@@ -21,6 +21,7 @@ npm run start-dev
 - Our chrome extension can be installed after cloning our repo by going to ``chrome://extensions/``, clicking on ``Load unpacked``, and using our ``extensions`` folder to properly pin any site you want with the click of a button.
 
 - Pin It uses [IBM Cloudant](https://www.ibm.com/cloud/cloudant). Please install this on your local machine before running our web app!
+
 Create a .env file with these process.env variables:
 
 With your IDs and secrets:
